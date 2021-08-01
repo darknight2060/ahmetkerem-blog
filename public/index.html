@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>Ahmet Kerem Blog</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#fff"/>
+    <meta
+      name="description"
+      content="Ahmet Kerem'in Bloğu"
+    />
+
+    <meta name="og:title" content="Ahmet Kerem BLOG"/>
+    <meta name="og:type" content="website"/>
+    <meta name="og:url" content="https://ahmetkerem.herokuapp.com/"/>
+    <meta name="og:image" content="https://ahmetkerem.herokuapp.com/images/favicon.png"/>
+
+    <link rel="icon" href="%PUBLIC_URL%/images/favicon.png"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/favicon.png"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      window.onload = () => {
+        document.getElementById("root").style.display = "block";
+        document.getElementById("loading").style.display = "none";
+      }
+    </script>
+
+    <div id="root"></div>
+
+    <img id="loading" src="/images/favicon.png"/>
+
+    <style>
+      #loading {
+        position: fixed;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        margin-top: -50px;
+        left: 50%;
+        margin-left: -50px;
+        animation: loadingAnimation linear 1s infinite;
+      }
+      
+      @keyframes loadingAnimation {
+        from {
+          transform: rotate(0deg);
+        }
+      
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </body>
+</html>
