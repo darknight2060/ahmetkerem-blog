@@ -4,22 +4,23 @@ const currentYear = new Date;
 class Footer extends React.Component {
   render() {return (
     <footer>
-      <a>Bi' Yazılımcının Köşesi. <br/> <b style={{color: "orange"}}>Ahmet Kerem</b> tarafından geliştirildi.</a> <br/>
-      <a style={{color: "#ccc"}}>v.21.0716</a>
+      <a>Ahmet Kerem Blog. <br/> <b>Ahmet Kerem</b> tarafından  geliştirildi.</a> <br/>
 
       <style>{`
         a {
-         color: #fff;
-        }
-
-        footer b:hover {
-          animation: parlama 1s infinite;
+          color: #000;
         }
 
         footer {
+          margin: 100px 0 0;
           padding: 80px 0;
-          background: #212121;
+          background: #fff;
           text-align: center;
+        }
+
+        footer b {
+          color: #7171d2;
+          cursor: pointer;
         }
 
         @keyframes parlama {

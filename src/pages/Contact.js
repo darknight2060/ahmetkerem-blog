@@ -3,7 +3,7 @@ import { database } from '../services/firebase';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 
-class PostID extends Component {
+class Contact extends Component {
   constructor(props) {
     super(props);
     this.database = database.ref(`posts/${window.location.pathname.slice(6)}`);
@@ -16,9 +16,6 @@ class PostID extends Component {
       document.getElementById("card-image").src = snap.val().image;
       document.getElementById("card-title").innerText = snap.val().title;
       document.getElementById("card-content").innerText = snap.val().content;
-
-      //var d = new Date;
-      //d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
       document.getElementById("card-date").innerText = snap.val().date;
     })
 
@@ -120,10 +117,6 @@ class PostID extends Component {
               border-radius: 0;
             }
 
-            .card-image {
-              border-radius: 0;
-            }
-
             footer {
               margin: 0;
             }
@@ -134,4 +127,4 @@ class PostID extends Component {
   }
 };
 
-export default PostID;
+export default Contact;

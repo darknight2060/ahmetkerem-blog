@@ -1,21 +1,38 @@
 import React from 'react';
 
 class Nav extends React.Component {
-  toggleMenu () {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opened: false
+    }
 
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu () {
+    if (this.state.opened == false) {
+      this.setState({ opened: true })
+
+      document.getElementById("nav-ul").style.left = "0";
+      document.getElementById("showMenu").style.backgroundColor = "#000";
+    } else {
+      this.setState({ opened: false })
+
+      document.getElementById("nav-ul").style.left = "-120%";
+      document.getElementById("showMenu").style.backgroundColor = "#adadad96";
+    }
   }
 
   render() {
     return (
       <div>
         <div className="overlay"></div>
-        <label className='showMenu' htmlFor='hiddenInput' onClick={this.toggleMenu}>☰</label>
-        <nav className='nav'>
-          <input id='hiddenInput' type='checkbox' value='0'/>
-
-          <ul>
-            <a href="/" style={{padding: "10px", display: "flex"}}>
-              <img src="/images/favicon.png" className="nav-img"/>
+        <label className="showMenu" id="showMenu" onClick={this.toggleMenu}>☰</label>
+        <nav className="nav" id="nav">
+          <ul id="nav-ul">
+            <a href="/" className="nav-image-container">
+              <img src="/images/favicon.png" className="nav-image"/>
             </a>
 
             <li>
@@ -23,7 +40,11 @@ class Nav extends React.Component {
             </li>
 
             <li>
-              <a href="/blog">İletişim</a>
+              <a href="/hakkinda">Hakkında</a>
+            </li>
+
+            <li>
+              <a href="/iletisim">İletişim</a>
             </li>
           </ul>
       
@@ -50,11 +71,14 @@ class Nav extends React.Component {
               width: 100%;
               position: fixed;
               z-index: 2;
+            }
+
+            .nav-image-container {
+              padding: 10px;
               display: flex;
-              align-items: center;
             }
   
-            .nav-img {
+            .nav-image {
               width: 32px;
               height: 32px;
             }
@@ -73,10 +97,6 @@ class Nav extends React.Component {
               align-items: center;
               justify-content: center;
               transition: 0.4s;
-            }
-  
-            nav ul.scrolled {
-              background: #2c2f33;
             }
   
             nav ul li {
@@ -99,10 +119,6 @@ class Nav extends React.Component {
               transition: 0.2s;
             }
             
-            #hiddenInput{
-              display: none;
-            }
-            
             .showMenu {
               display: none;
               width: 30px;
@@ -118,60 +134,54 @@ class Nav extends React.Component {
               z-index: 101;
               cursor: pointer;
               backdrop-filter: blur(2px);
+              box-shadow: 0 2px 4px #000;
             }
             
             @media (max-width: 900px) {
               .showMenu {
                 display: block;
               }
-  
-              nav ul {
-                transition: 0.4s;
-                position: fixed;
-                left: 120%;
-                background: #2c2f33;
-              }
-              
+
               nav {
                 width: 50%;
                 float: right;
-                left: 25%;
                 height: 0;
                 z-index:100;
               }
   
               nav ul {
-                width: 75%;
+                width: 100%;
                 height: 100vh;
+                background: #fff;
+                left: -120%;
                 border: 0;
                 padding: 0;
-              }
-              
-              #hiddenInput:checked ~ nav ul, div.overlay {
-                left: 25%;
-              }
-  
-              nav ul {
-                background: #2c2f33;
+                padding-top: 70px;
+                position: fixed;
+                display: block;
+                transition: 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
               }
             
               nav ul li {
-                color: white;
-                top: 80px;
+                color: #000;
                 display: block;
                 text-align:center;
                 padding: 15px 0px;
                 margin: 0;
-                border-bottom:1px solid rgba(1,1,1,1,.1);
               }
             
               nav ul li:hover {
-                box-shadow:0 0 0;
+                box-shadow: 0 0 0;
               }
   
               nav ul li a {
-                color: #fff;
+                color: #000;
+                font-size: 20px;
                 padding: 15px 55px;
+              }
+
+              .nav-image-container {
+                display: none;
               }
             }
           `}</style>

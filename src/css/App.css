@@ -1,20 +1,11 @@
 html {
   color: #222823;
-  background: #fff;
+  background: #eeeeef;
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari vs. */
-     -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge Tarayıcı */
-          user-select: none; /* Ön Eksiz Sürüm */
 }
 
 .main {
   padding: 0;
-}
-
-.başlık {
-  color: #290025;
 }

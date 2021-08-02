@@ -1,22 +1,34 @@
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import NotFoundPage from './pages/NotFoundPage';
+import firebase from "firebase/app";
 import Home from './pages/Home';
-import PostId from './pages/postID';
+import PostID from './pages/postID';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFoundPage from './pages/404';
 import './css/App.css';
 
-const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          {/*Design.map(d => (<Route exact path={`/tasarim/${d.id}`} render={() => {return <DesignId design={d}/>}}></Route>))*/}
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path="/post/:id" component={PostID} />
+            <Route exact path="/hakkinda" component={About} />
+            <Route exact path="/iletisim" component={Contact} />
+            <Route path="*" component={NotFoundPage} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;
