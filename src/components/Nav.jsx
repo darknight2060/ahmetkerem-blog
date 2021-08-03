@@ -16,11 +16,13 @@ class Nav extends React.Component {
 
       document.getElementById("nav-ul").style.left = "0";
       document.getElementById("showMenu").style.backgroundColor = "#000";
+      document.getElementById("showMenu").innerHTML = "&#x2715;";
     } else {
       this.setState({ opened: false })
 
       document.getElementById("nav-ul").style.left = "-120%";
-      document.getElementById("showMenu").style.backgroundColor = "#adadad96";
+      document.getElementById("showMenu").style.backgroundColor = "rgb(0 211 128 / 80%)";
+      document.getElementById("showMenu").innerHTML = "&#9776;";
     }
   }
 
@@ -28,7 +30,7 @@ class Nav extends React.Component {
     return (
       <div>
         <div className="overlay"></div>
-        <label className="showMenu" id="showMenu" onClick={this.toggleMenu}>☰</label>
+        <label className="showMenu" id="showMenu" onClick={this.toggleMenu}>&#9776;</label>
         <nav className="nav" id="nav">
           <ul id="nav-ul">
             <a href="/" className="nav-image-container">
@@ -105,7 +107,7 @@ class Nav extends React.Component {
               display: inline-block;
               position: relative;
               box-shadow: 1px 0 1px rgb(0 0 0 / 10%);
-              transition: 0.2s;
+              transition: 0.1s;
               cursor: pointer;
             }
 
@@ -116,7 +118,6 @@ class Nav extends React.Component {
             nav ul li a {
               color: #000;
               padding: 15px 20px;
-              transition: 0.2s;
             }
             
             .showMenu {
@@ -129,7 +130,7 @@ class Nav extends React.Component {
               font-size: 28px;
               position: fixed;
               padding: 10px 15px 10px 15px;
-              background-color: #adadad96;
+              background-color: rgb(0 211 128 / 80%);;
               border-radius: 5px;
               z-index: 101;
               cursor: pointer;
@@ -156,7 +157,7 @@ class Nav extends React.Component {
                 left: -120%;
                 border: 0;
                 padding: 0;
-                padding-top: 70px;
+                padding-top: 80px;
                 position: fixed;
                 display: block;
                 transition: 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -165,9 +166,11 @@ class Nav extends React.Component {
               nav ul li {
                 color: #000;
                 display: block;
-                text-align:center;
+                text-align: center;
                 padding: 15px 0px;
                 margin: 0;
+                box-shadow: none;
+                border-top: 1px solid rgb(0 0 0 / 10%);
               }
             
               nav ul li:hover {

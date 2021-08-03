@@ -1,41 +1,27 @@
 import React, { Component } from "react";
 import { database } from '../services/firebase';
+import Skeleton from "react-loading-skeleton";
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
+import Comments from '../components/Comments';
 
 class PostID extends Component {
   constructor(props) {
     super(props);
     this.database = database.ref(`posts/${window.location.pathname.slice(6)}`);
+    this.state = {
+      post: []
+    }
   }
 
   componentDidMount() {
     this.database.get().then(snap => {
       if (!snap.exists()) return;
 
-      document.getElementById("card-image").src = snap.val().image;
-      document.getElementById("card-title").innerText = snap.val().title;
+      this.setState({post: snap.val()})
+
       document.getElementById("card-content").innerText = snap.val().content;
-
-      //var d = new Date;
-      //d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
-      document.getElementById("card-date").innerText = snap.val().date;
     })
-
-    //this.database.on("child_added", snap => {
-    //
-    //})
-    //
-    //this.database.on('child_removed', snap => {
-    //  for (var i = 0; i < previousComments.length; i++) {
-    //      if (previousComments[i].id === snap.key) {
-    //          previousComments.splice(i, 1);
-    //      }
-    //  }
-    //  this.setState({
-    //    yorumlar: previousComments,
-    //  })
-    //})
   }
 
   render() {
@@ -45,13 +31,23 @@ class PostID extends Component {
 
         <div className='main'>
           <div className="card">
-            <img id="card-image" alt="Yazı Fotoğrafı" className='card-image' draggable="false"/>
+            {this.state.post.title ? 
+              <img src={this.state.post.image||"/default.jpg"} alt="Blog Fotoğrafı" className='card-image'/>
+            : 
+              <Skeleton className="card-image-skeleton" />
+            }
 
-            <h1 id="card-title" className="card-title"></h1>
+            {this.state.post.title ?
+              <h1 className="card-title">{this.state.post.title}</h1>
+            :
+              <Skeleton className="card-title-skeleton" />
+            }
 
             <div id="card-content" className="card-content"></div>
 
-            <div id="card-date" className="card-date"></div>
+            <div className="card-date">{this.state.post.date}</div>
+
+            <Comments/>
           </div>
         </div>
   
@@ -82,6 +78,12 @@ class PostID extends Component {
             width: 100%;
             text-align: center;
           }
+
+          .card-image-skeleton {
+            width: 100%;
+            height: 300px;
+            display: block;
+          }
     
           .card-image {
             width: 100%;
@@ -89,16 +91,24 @@ class PostID extends Component {
             border-radius: 10px 10px 0 0;
             object-fit: cover;
           }
+
+          .card-title-skeleton {
+            width: 550px;
+            height: 70px;
+            border-radius: 100px;
+            margin: 30px 0;
+          }
     
           .card-title {
             margin: 30px auto 35px;
-            text-align: center;
+            padding: 0 30px;
             font-size: 48px;
             font-weight: normal;
           }
 
           .card-content {
             padding: 0 30px;
+            text-align: left;
           }
     
           .card-date {
@@ -120,7 +130,12 @@ class PostID extends Component {
               border-radius: 0;
             }
 
+            .card-image-skeleton {
+              height: 250px;
+            }
+
             .card-image {
+              height: 250px;
               border-radius: 0;
             }
 

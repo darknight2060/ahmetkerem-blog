@@ -13,3 +13,26 @@ body {
   font-family: 'Nunito', sans-serif;
   /*font-family: main-font;*/
 }
+
+textarea {
+  font-family: 'Nunito';
+}
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+  cursor: default;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #2f2d33;
+  border-radius: 10px;
+}
+
+input {
+  font-family: 'Nunito';
+}

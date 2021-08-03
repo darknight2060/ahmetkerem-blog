@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { database } from '../services/firebase';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
+import emailjs, { init } from 'emailjs-com';
+
+init("user_Vdwby8A4OwT7IbNJvylLf");
 
 class Contact extends Component {
   constructor(props) {
@@ -13,26 +16,23 @@ class Contact extends Component {
     this.database.get().then(snap => {
       if (!snap.exists()) return;
 
-      document.getElementById("card-image").src = snap.val().image;
-      document.getElementById("card-title").innerText = snap.val().title;
-      document.getElementById("card-content").innerText = snap.val().content;
-      document.getElementById("card-date").innerText = snap.val().date;
+      document.getElementById("contact-image").src = snap.val().image;
+      document.getElementById("contact-title").innerText = snap.val().title;
+      document.getElementById("contact-content").innerText = snap.val().content;
+      document.getElementById("contact-date").innerText = snap.val().date;
     })
 
-    //this.database.on("child_added", snap => {
-    //
-    //})
-    //
-    //this.database.on('child_removed', snap => {
-    //  for (var i = 0; i < previousComments.length; i++) {
-    //      if (previousComments[i].id === snap.key) {
-    //          previousComments.splice(i, 1);
-    //      }
-    //  }
-    //  this.setState({
-    //    yorumlar: previousComments,
-    //  })
-    //})
+    document.getElementById("contact-form").addEventListener('submit', event => {
+      event.preventDefault();
+      console.log(event.target)
+
+      emailjs.sendForm('service_1tize8k', "template_66d4i7o", event.target, "user_Vdwby8A4OwT7IbNJvylLf")
+        .then(function() {
+          alert('SUCCESS!');
+        }, function(error) {
+          alert('FAILED...', error);
+        });
+    });
   }
 
   render() {
@@ -41,14 +41,36 @@ class Contact extends Component {
         <Nav/>
 
         <div className='main'>
-          <div className="card">
-            <img id="card-image" alt="Yazı Fotoğrafı" className='card-image' draggable="false"/>
+          <div className="contact">
+            <img id="contact-image" className="contact-image" draggable="false" />
 
-            <h1 id="card-title" className="card-title"></h1>
+            <h2 className="contact-title">Sosyal Medya</h2>
 
-            <div id="card-content" className="card-content"></div>
+            <div className="social-links">
+              <a href="https://www.facebook.com/ahmetkerem.akyel.3/" target="blank">
+                <div className="social" style={{backgroundColor: "#1278f3"}}>Facebook</div>
+              </a>
+  
+              <a href="https://www.instagram.com/ahmetkeremakyel/" target="blank">
+                <div className="social" style={{background: "linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)"}}>Instagram</div>
+              </a>
+  
+              <a href="https://twitter.com/ahmetkeremakyel" target="blank">
+                <div className="social" style={{backgroundColor: "#00a2f5"}}>Twitter</div>
+              </a>
+            </div>
 
-            <div id="card-date" className="card-date"></div>
+            <div style={{margin: "20px 0 10px", opacity: ".6", userSelect: "none"}}>veya</div>
+            
+            <h2 className="contact-title-second">E-Posta Gönder</h2>
+
+            <form id="contact-form">
+              <input type="text" className="contact-input" placeholder="İsim" name="from_name" required />
+              <input type="text" className="contact-input" placeholder="Konu" name="from_subject" />
+              <textarea type="text" className="contact-textarea" placeholder="İçerik" name="message" required />
+  
+              <input type="submit" value="Gönder" className="contact-button" />
+            </form>
           </div>
         </div>
   
@@ -60,7 +82,7 @@ class Contact extends Component {
           }
 
           .container {
-            padding: 100px 0 0;
+            padding: 120px 0 0;
             background: #eeeeef;
           }
 
@@ -71,36 +93,107 @@ class Contact extends Component {
             padding: 0;
           }
     
-          .card {
+          .contact {
             color: #000;
             border-radius: 10px;
             background: #fff;
             box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
             width: 100%;
+            padding: 30px 0 50px;
             text-align: center;
           }
     
-          .card-image {
+          .contact-image {
             width: 100%;
             height: 300px;
             border-radius: 10px 10px 0 0;
             object-fit: cover;
-          }
-    
-          .card-title {
-            margin: 30px auto 35px;
-            text-align: center;
-            font-size: 48px;
-            font-weight: normal;
+            display: none;
           }
 
-          .card-content {
-            padding: 0 30px;
+          .contact-title {
+            font-weight: normal;
+            user-select: none;
+          }
+
+          .contact-title-second {
+            font-weight: normal;
+            user-select: none;
+          }
+
+          .contact .social {
+            width: 100px;
+            margin: 8px;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+            transition: .1s;
+          }
+
+          .contact .social:active {
+            transform: scale(.95);
           }
     
-          .card-date {
-            padding: 30px;
-            text-align: right;
+          .contact-input {
+            width: 300px;
+            border: 0;
+            margin: 15px auto 0;
+            padding: 12px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, .06);
+            resize: none;
+            outline: none;
+            font-size: 16px;
+            transition: .1s;
+            display: block;
+          }
+
+          .contact-input:focus {
+            background: rgb(0 0 0 / 10%);
+            transform: scale(1.05);
+          }
+
+          .contact-textarea {
+            width: 300px;
+            border: 0;
+            margin: 15px auto 0;
+            padding: 12px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, .06);
+            resize: none;
+            outline: none;
+            text-align: left;
+            font-size: 14px;
+            transition: .1s;
+            display: block;
+          }
+
+          .contact-textarea:focus {
+            background: rgb(0 0 0 / 10%);
+            transform: scale(1.05);
+          }
+
+          .contact-button {
+            width: 120px;
+            background: #2f2d33;
+            border: none;
+            border-radius: 5px;
+            margin: 20px auto 0;
+            padding: 10px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: .1s;
+          }
+
+          .contact-button:hover {
+            background: #5b5b5c;
+            cursor: pointer;
+          }
+
+          .contact-button:active {
+            transform: scale(.95);
           }
     
           @media (max-width: 700px) {
@@ -112,9 +205,26 @@ class Contact extends Component {
               width: 100%;
             }
     
-            .card {
+            .contact {
               margin: 0 auto;
               border-radius: 0;
+            }
+
+            .contact-title {
+              margin: 70px 0;
+            }
+
+            .contact .social-links {
+              max-width: 80%;
+              margin: auto;
+            }
+
+            .contact-input {
+              width: 80%;
+            }
+
+            .contact-textarea {
+              width: 80%;
             }
 
             footer {
