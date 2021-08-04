@@ -37,13 +37,19 @@ class Nav extends React.Component {
               <img src="/images/favicon.png" className="nav-image"/>
             </a>
 
+            <div className="section"></div>
+
             <li>
               <a href="/">Ana Sayfa</a>
             </li>
+            
+            <div className="section"></div>
 
             <li>
               <a href="/hakkinda">Hakkında</a>
             </li>
+
+            <div className="section"></div>
 
             <li>
               <a href="/iletisim">İletişim</a>
@@ -76,7 +82,7 @@ class Nav extends React.Component {
             }
 
             .nav-image-container {
-              padding: 10px;
+              padding: 10px 20px;
               display: flex;
             }
   
@@ -106,7 +112,6 @@ class Nav extends React.Component {
               padding: 15px 0;
               display: inline-block;
               position: relative;
-              box-shadow: 1px 0 1px rgb(0 0 0 / 10%);
               transition: 0.1s;
               cursor: pointer;
             }
@@ -119,6 +124,12 @@ class Nav extends React.Component {
               color: #000;
               padding: 15px 20px;
             }
+
+            nav .section {
+              width: 1px;
+              height: 24px;
+              background: rgb(0 0 0 / 10%);
+            }
             
             .showMenu {
               display: none;
@@ -130,7 +141,7 @@ class Nav extends React.Component {
               font-size: 28px;
               position: fixed;
               padding: 10px 15px 10px 15px;
-              background-color: rgb(0 211 128 / 80%);;
+              background-color: rgb(0 211 128 / 80%);
               border-radius: 5px;
               z-index: 101;
               cursor: pointer;
@@ -148,6 +159,18 @@ class Nav extends React.Component {
                 float: right;
                 height: 0;
                 z-index:100;
+              }
+
+              .nav-image-container {
+                top: 15px;
+                right: 15px;
+                position: absolute;
+                padding: 0;
+              }
+
+              .nav-image {
+                width: 50px;
+                height: 50px;
               }
   
               nav ul {
@@ -183,8 +206,11 @@ class Nav extends React.Component {
                 padding: 15px 55px;
               }
 
-              .nav-image-container {
-                display: none;
+              nav .section {
+                width: 90%;
+                height: 1px;
+                background: rgb(0 0 0 / 10%);
+                margin: auto;
               }
             }
           `}</style>

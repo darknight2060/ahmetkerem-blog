@@ -3,31 +3,33 @@ import { database } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
+import Like from "../components/Like";
 import Comments from '../components/Comments';
 
 class PostID extends Component {
   constructor(props) {
     super(props);
-    this.database = database.ref(`posts/${window.location.pathname.slice(6)}`);
     this.state = {
       post: []
     }
   }
 
   componentDidMount() {
-    this.database.get().then(snap => {
-      if (!snap.exists()) return;
+    database.ref(`posts`).on("value", snap => {
+      snap.forEach(s => {
+        if (s.key == window.location.pathname.slice(6)) {
+          this.setState({post: s.val()})
 
-      this.setState({post: snap.val()})
-
-      document.getElementById("card-content").innerText = snap.val().content;
+          document.getElementById("card-content").innerText = s.val().content;
+        }
+      })
     })
   }
 
   render() {
     return (
       <div className="container">
-        <Nav/>
+        <Nav />
 
         <div className='main'>
           <div className="card">
@@ -47,11 +49,12 @@ class PostID extends Component {
 
             <div className="card-date">{this.state.post.date}</div>
 
-            <Comments/>
+            <Like />
+            <Comments />
           </div>
         </div>
   
-        <Footer/>
+        <Footer />
         
         <style>{`
           html {
@@ -82,6 +85,7 @@ class PostID extends Component {
           .card-image-skeleton {
             width: 100%;
             height: 300px;
+            border-radius: 10px 10px 0 0;
             display: block;
           }
     
@@ -94,7 +98,7 @@ class PostID extends Component {
 
           .card-title-skeleton {
             width: 550px;
-            height: 70px;
+            height: 66px;
             border-radius: 100px;
             margin: 30px 0;
           }
@@ -132,11 +136,16 @@ class PostID extends Component {
 
             .card-image-skeleton {
               height: 250px;
+              border-radius: 0;
             }
 
             .card-image {
               height: 250px;
               border-radius: 0;
+            }
+
+            .card-title-skeleton {
+              width: calc(100% - 60px);
             }
 
             footer {

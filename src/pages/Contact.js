@@ -131,6 +131,10 @@ class Contact extends Component {
             transition: .1s;
           }
 
+          .contact .social:hover {
+            box-shadow: 0 5px 10px #ccc;
+          }
+
           .contact .social:active {
             transform: scale(.95);
           }
@@ -176,7 +180,7 @@ class Contact extends Component {
 
           .contact-button {
             width: 120px;
-            background: #2f2d33;
+            background: var(--button-background);
             border: none;
             border-radius: 5px;
             margin: 20px auto 0;
@@ -188,7 +192,7 @@ class Contact extends Component {
           }
 
           .contact-button:hover {
-            background: #5b5b5c;
+            background: var(--button-hover-background);
             cursor: pointer;
           }
 

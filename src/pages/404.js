@@ -18,7 +18,7 @@ class NotFoundPage extends React.Component {
           
           <Footer/>
 
-          <style>{`
+          <style>{` 
             .des {
               color: #000;
               font-size: 20px;

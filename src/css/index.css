@@ -6,10 +6,17 @@
   src: url('../alegreya-sans.medium.ttf');
 }*/
 
+:root {
+  --button-inactive: #000;
+  --button-background: rgb(0 211 128);
+  --button-hover-background: rgb(0 155 94);
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Ubuntu', sans-serif;
   font-family: 'Nunito', sans-serif;
   /*font-family: main-font;*/
 }

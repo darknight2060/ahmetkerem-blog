@@ -4,7 +4,7 @@ const currentYear = new Date;
 class Footer extends React.Component {
   render() {return (
     <footer>
-      <div className="text">Ahmet Kerem Blog. <br/> <a href="/hakkinda">Ahmet Kerem</a> tarafından  geliştirildi.</div> <br/>
+      <div className="text">Ahmet Kerem Blog. <br/> <a href="/hakkinda">Ahmet Kerem</a> tarafından ❤️ ile geliştirildi.</div> <br/>
 
       <style>{`
         footer {
@@ -12,6 +12,7 @@ class Footer extends React.Component {
           padding: 80px 0;
           background: #fff;
           text-align: center;
+          user-select: none;
         }
 
         footer .text {
@@ -19,7 +20,13 @@ class Footer extends React.Component {
         }
 
         footer a {
-          color: #7171d2;
+          color: var(--button-background);
+          font-weight: bold;
+          transition: .1s;
+        }
+
+        footer a:hover {
+          color: var(--button-hover-background)
         }
 
         @media (max-width: 900px) {

@@ -60,11 +60,9 @@ class CommentForm extends Component {
                   value={this.state.newCommentContent}
                   onChange={event => this.setState({newCommentContent: event.target.value})}
                 />
-              </div>
-              
-              <div>
+
                 <button className="shareButton" onClick={this.shareComment}>
-                  <img src="/images/sender.png" style={{width: "20px", height: "20px", margin: "0"}} />
+                  Yayınla
                 </button>
               </div>
             </div>
@@ -79,7 +77,7 @@ class CommentForm extends Component {
                 }
 
                 .commentInput {
-                  width: calc(100% - 20px);
+                  width: calc(100% - 30px);
                   height: 40px;
                   border: 0;
                   margin-top: 5px;
@@ -90,22 +88,24 @@ class CommentForm extends Component {
                   outline: none;
                   text-align: left;
                   font-size: 14px;
+                  display: block;
                 }
 
                 .shareButton {
-                  background: #2f2d33;
+                  background: var(--button-background);
                   border: none;
-                  border-radius: 100%;
-                  margin: 100% 10px 0 10px;
-                  padding: 6px;
+                  border-radius: 5px;
+                  margin: 10px;
+                  padding: 10px 15px;
                   color: #fff;
                   display: flex;
                   outline: none;
+                  float: right;
                   transition: .1s;
                 }
 
                 .shareButton:hover {
-                  background: #5b5b5c;
+                  background: var(--button-hover-background);
                   cursor: pointer;
                 }
 
@@ -115,9 +115,6 @@ class CommentForm extends Component {
                   padding-bottom: 5px;
                   background: #ffffff;
                   border: 2px solid #cccccc6e;
-                  width: 100%;
-                  max-width: 100%;
-                  height: auto;
                   display: flex;
                 }
         
