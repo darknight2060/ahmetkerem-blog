@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Ubuntu&display=swap');
-
-/*@font-face {
-  font-family: main-font;
-  src: url('../alegreya-sans.medium.ttf');
-}*/
 
 :root {
   --button-inactive: #000;
@@ -16,9 +10,11 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Ubuntu', sans-serif;
   font-family: 'Nunito', sans-serif;
-  /*font-family: main-font;*/
+}
+
+img {
+  user-select: none;
 }
 
 textarea {
@@ -42,4 +38,8 @@ textarea::-webkit-scrollbar-thumb {
 
 input {
   font-family: 'Nunito';
+}
+
+button {
+  user-select: none;
 }

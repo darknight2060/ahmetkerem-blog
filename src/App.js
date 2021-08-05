@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import PostID from './pages/postID';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profil';
 import NotFoundPage from './pages/404';
 import './css/App.css';
 
@@ -23,6 +26,10 @@ class App extends React.Component {
             <Route path="/post/:id" component={PostID} />
             <Route exact path="/hakkinda" component={About} />
             <Route exact path="/iletisim" component={Contact} />
+            <Route exact path="/iletisim" component={Contact} />
+            <Route exact path="/giris" component={Login} />
+            <Route exact path="/kaydol" component={Register} />
+            <Route exact path="/profil" component={Profile} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </BrowserRouter>

@@ -15,11 +15,9 @@ class CommentForm extends Component {
 
     componentDidMount() {
       auth.onAuthStateChanged(user => {
-        if (auth.currentUser !== null) {
-          database.ref("users/" + user.uid).get().then(snap => {
-            if (snap.val().userImage) document.getElementById("commentform-image").src = snap.val().userImage;
-            document.getElementById("commentform-name").innerText = snap.val().userName;
-          })
+        if (user) {
+          document.getElementById("commentform-image").innerText = user.photoURL;
+          document.getElementById("commentform-name").innerText = user.displayName;
         } else document.getElementById("commentform-name").innerText = "Misafir";
       })
     }
@@ -49,7 +47,7 @@ class CommentForm extends Component {
             <div className="comment-card-edit">
               <img src={"/images/example.jpg"} className="comment-image" id="commentform-image" />
 
-              <div style={{width: "100%"}}>
+              <div style={{width: "90%"}}>
                 <div className="başlık" id="commentform-name">
                   <Skeleton width={100} style={{borderRadius: "20px"}}/>  
                 </div>
@@ -129,6 +127,7 @@ class CommentForm extends Component {
         
                 .başlık {
                   font-size: 13px;
+                  font-weight: bold;
                   margin-top: 10px;
                   text-align: left;
                 }

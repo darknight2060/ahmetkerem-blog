@@ -9,8 +9,10 @@ class NotFoundPage extends React.Component {
           <Nav/>
 
           <div className="div">
-            <img src="/Sad-Web.png" width="300px" draggable="false"/>
-            <p className="text1">Böyle bir sayfa yok gibi görünüyor...</p>
+            <img src="/images/favicon.png" width="50px" draggable="false"/>
+
+            <p className="title">Böyle bir sayfa yok gibi görünüyor...</p>
+
             <div className="des">
               <a href="/" className="des-link">Ana Sayfa</a>'ya dönebilirsin.
             </div> 
@@ -18,17 +20,7 @@ class NotFoundPage extends React.Component {
           
           <Footer/>
 
-          <style>{` 
-            .des {
-              color: #000;
-              font-size: 20px;
-            }
-
-            .des-link {
-              font-size: 20px;
-              color: #00a0d9;
-            }
-
+          <style>{`
             .div {
               max-width: 700px;
               top: 50%;
@@ -38,10 +30,22 @@ class NotFoundPage extends React.Component {
               text-align: center;
             }
 
-            .text1 {
+            .div .title {
               font-size: 47px;
-              margin-bottom: 20px;
-              color: #000;
+              margin: 20px;
+            }
+
+            .des {
+              font-size: 20px;
+            }
+
+            .des-link {
+              color: var(--button-background);
+              font-size: 20px;
+            }
+
+            .des-link:hover {
+              color: var(--button-hover-background);
             }
 
             footer {
@@ -52,7 +56,6 @@ class NotFoundPage extends React.Component {
 
             @media (max-width: 1200px) {
               footer {
-                position: inherit;
                 margin: 0;
               }
             }

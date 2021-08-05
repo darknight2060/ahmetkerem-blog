@@ -1,4 +1,6 @@
 import React from 'react';
+import { auth } from '../services/firebase';
+import Skeleton from "react-loading-skeleton";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -8,6 +10,15 @@ class Nav extends React.Component {
     }
 
     this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("nav-name").innerHTML = user.displayName;
+        document.getElementById("nav-pp").src = user.photoURL;
+      }
+    })
   }
 
   toggleMenu () {
@@ -36,26 +47,42 @@ class Nav extends React.Component {
             <a href="/" className="nav-image-container">
               <img src="/images/favicon.png" className="nav-image"/>
             </a>
-
-            <div className="section"></div>
-
+              <div className="section"></div>
             <li>
               <a href="/">Ana Sayfa</a>
             </li>
-            
-            <div className="section"></div>
-
+              <div className="section"></div>
             <li>
               <a href="/hakkinda">Hakkında</a>
             </li>
-
-            <div className="section"></div>
-
+              <div className="section"></div>
             <li>
               <a href="/iletisim">İletişim</a>
             </li>
+              <div className="section"></div>
+            {localStorage.getItem("currentUser") ? (
+              <a href="/profil">
+                <div className="profile-div">
+                  <div className="profile">
+                    <span id="nav-name" className="nav-name" style={{color: "#000"}}>
+                      <Skeleton 
+                        width={100}
+                        style={{borderRadius: "20px"}} />
+                    </span>
+
+                    <img id="nav-pp" src="/images/default.jpg" />
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <div style={{display: "flex", padding: "15px 20px"}}>
+                <a href="/giris" style={{color: "var(--button-background)"}}>Giriş yap</a>
+                  <div style={{margin: "0 5px", userSelect: "none"}}>veya</div>
+                <a href="/kaydol" style={{color: "var(--button-background)"}}>Kaydol</a>
+              </div>
+            )}
           </ul>
-      
+
           <style>{`
             a {
               color: #00a0d9;
@@ -89,6 +116,7 @@ class Nav extends React.Component {
             .nav-image {
               width: 32px;
               height: 32px;
+              object-fit: contain;
             }
   
             nav ul {
@@ -130,6 +158,29 @@ class Nav extends React.Component {
               height: 24px;
               background: rgb(0 0 0 / 10%);
             }
+
+            nav .profile-div {
+              padding: 10px 20px;
+              display: flex;
+            }
+
+            nav .profile-div:hover {
+              background: rgb(0 0 0 / 12%);
+            }
+
+            nav .profile {
+              display: flex;
+              align-items: center;
+              border-radius: 20px;
+            }
+
+            nav .profile img {
+              width: 32px;
+              height: 32px;
+              margin-left: 12px;
+              border-radius: 100%;
+              box-shadow: 0 0 0px 2px var(--button-background);
+            }
             
             .showMenu {
               display: none;
@@ -166,6 +217,7 @@ class Nav extends React.Component {
                 right: 15px;
                 position: absolute;
                 padding: 0;
+                display: none;
               }
 
               .nav-image {
@@ -211,6 +263,22 @@ class Nav extends React.Component {
                 height: 1px;
                 background: rgb(0 0 0 / 10%);
                 margin: auto;
+              }
+
+              nav .profile-div {
+                position: absolute;
+                top: 12px;
+                right: 0px;
+                border-radius: 40px 0 0 40px;
+              }
+
+              nav .name {
+                font-size: 18px;
+              }
+
+              nav .profile img {
+                width: 36px;
+                height: 36px;
               }
             }
           `}</style>

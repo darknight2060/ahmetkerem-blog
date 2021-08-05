@@ -215,7 +215,7 @@ class Contact extends Component {
             }
 
             .contact-title {
-              margin: 70px 0;
+              margin: 70px 0 20px;
             }
 
             .contact .social-links {
