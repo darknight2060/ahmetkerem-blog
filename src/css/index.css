@@ -43,3 +43,7 @@ input {
 button {
   user-select: none;
 }
+
+.overlay-img {
+  animation: loadingAnimation2 ease-in-out 1.5s infinite;
+}

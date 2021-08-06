@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { firebase, auth } from '../services/firebase';
+import React from 'react';
+import { auth } from '../services/firebase';
 import Nav from '../components/Nav';
 
 const Login = () => {
@@ -24,13 +24,18 @@ const Login = () => {
       });
   }
 
+  window.addEventListener("keypress", (e) => {
+    if (e.keyCode == "13") document.getElementById("signButton").click();
+  })
+
   return (
     <div>
       <Nav />
   
+      <div className="overlay" id="overlay" />
+      <img src="/images/favicon.png" className="overlay-img" id="overlay-img" />
+
       <div className="ana">
-        <div className="overlay" id="overlay"></div>
-        <img src="/favicon.png" className="overlay-img" id="overlay-img"/>
   
         <p style={{fontWeight: "bold", userSelect: "none"}}>Giriş Yap</p>
         <div id="errorMessage" className="errorMessage"></div>
@@ -39,7 +44,7 @@ const Login = () => {
 
         <input id="pass" type="password" placeholder="Şifre" required/>
         
-        <button onClick={SignIn} id="signbutton">Giriş Yap</button><br/><br/>
+        <button onClick={SignIn} id="signButton">Giriş Yap</button><br/><br/>
         <label className="text">Henüz bir hesabın yok mu? Sorun değil! <a href="/kaydol">Kaydol.</a></label>
   
         <style>{`
@@ -72,6 +77,7 @@ const Login = () => {
             position: fixed;
             margin-top: -75px;
             margin-left: -75px;
+            object-fit: contain;
             z-index: 899;
             display: none;
           }

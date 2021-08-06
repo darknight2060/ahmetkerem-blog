@@ -5,7 +5,7 @@ import Footer from './../components/Footer';
 import '../css/App.css';
 import '../css/Home.css';
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,8 +73,6 @@ class Home extends React.Component {
           </div>
 
         </div>
-
-        <Footer />
       </div>
     )
   }

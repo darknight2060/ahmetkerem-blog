@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { database } from '../services/firebase';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 

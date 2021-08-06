@@ -1,6 +1,5 @@
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import firebase from "firebase/app";
 import Home from './pages/Home';
 import PostID from './pages/postID';
 import About from './pages/About';
@@ -8,9 +7,9 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profil';
+import ProfileEdit from './pages/ProfileEdit';
 import NotFoundPage from './pages/404';
 import './css/App.css';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +29,7 @@ class App extends React.Component {
             <Route exact path="/giris" component={Login} />
             <Route exact path="/kaydol" component={Register} />
             <Route exact path="/profil" component={Profile} />
+            <Route exact path="/profil/duzenle" component={ProfileEdit} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </BrowserRouter>

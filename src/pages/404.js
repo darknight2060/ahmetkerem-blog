@@ -51,10 +51,15 @@ class NotFoundPage extends React.Component {
             footer {
               width: 100%;
               bottom: -100px;
+              padding: 80px 0;
               position: absolute;
             }
 
             @media (max-width: 1200px) {
+              .div {
+                margin: 100px auto;
+              }
+              
               footer {
                 margin: 0;
               }

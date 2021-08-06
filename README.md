@@ -1,5 +1,5 @@
-# TO-DO
-- Post Beğenme
+-Like konteynırı kullanılabilir olmadan görünmesin
+-Nav üzerindeki profil fotorğafı yüklenirken skeleton gösterilsin
 
 # Proje
 - Projeyi Bitir

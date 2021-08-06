@@ -1,7 +1,6 @@
 import React from 'react';
 import { database, auth } from '../services/firebase';
 import Nav from '../components/Nav';
-const randomstring = require('randomstring');
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -30,8 +29,8 @@ class SignUp extends React.Component {
       if (user) {
         localStorage.setItem("currentUser", auth.currentUser.uid);
         
-        user.updateProflie({
-          displayName: document.getElementById("name").value
+        database.ref("users/"+user.uid).set({
+          userName: document.getElementById("name").value
         })
 
         return window.location.href = "/profil";
@@ -40,16 +39,21 @@ class SignUp extends React.Component {
   }
   
   render() {
+    window.addEventListener("keypress", (e) => {
+      if (e.keyCode == "13") document.getElementById("registerButton").click();
+    })
+    
     if (localStorage.getItem("currentUser") !== null) window.location.href = "/";
 
   return (
     <div>
       <Nav />
 
+      <div className="overlay" id="overlay" />
+      <img src="/images/favicon.png" className="overlay-img" id="overlay-img" />
+
       <div className="ana">
         <div className="ana-alt">
-          <div className="overlay" id="overlay"></div>
-          <img src="/favicon.png" className="overlay-img" id="overlay-img"/>
 
           <p style={{fontWeight: "bold", userSelect: "none"}}>Kaydol</p>
           <div id="errorMessage" className="errorMessage"></div>
@@ -60,7 +64,7 @@ class SignUp extends React.Component {
 
           <input id="pass" type="password" placeholder="Şifre" required/>
           
-          <button onClick={this.SignUp}>Kaydol</button><br/><br/>
+          <button className="registerButton" onClick={this.SignUp}>Kaydol</button><br/><br/>
           <label className="text">Zaten bir hesabın var mı? <a href="/giris">Giriş Yap.</a></label>
         </div>
   
@@ -85,7 +89,7 @@ class SignUp extends React.Component {
             z-index: 888;
             display: none;
           }
-  
+    
           .overlay-img {
             top: 50%;
             left: 50%;
@@ -94,6 +98,7 @@ class SignUp extends React.Component {
             position: fixed;
             margin-top: -75px;
             margin-left: -75px;
+            object-fit: contain;
             z-index: 899;
             display: none;
           }

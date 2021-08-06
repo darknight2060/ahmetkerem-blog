@@ -1,15 +1,20 @@
 import React from 'react';
-const currentYear = new Date;
 
 class Footer extends React.Component {
   render() {return (
     <footer>
-      <div className="text">Ahmet Kerem Blog. <br/> <a href="/hakkinda">Ahmet Kerem</a> tarafından ❤️ ile geliştirildi.</div> <br/>
+      <div className="text">
+        
+        &copy; 2021 Ahmet Kerem Blog. <br/>
+      
+        <a href="/hakkinda">Ahmet Kerem</a> tarafından ❤️ ile geliştirildi.
+
+      </div>
 
       <style>{`
         footer {
           margin: 100px 0 0;
-          padding: 80px 0;
+          padding: 80px 20px;
           background: #fff;
           text-align: center;
           user-select: none;
@@ -37,6 +42,6 @@ class Footer extends React.Component {
       `}</style>
     </footer>
   )}
-}
+};
 
 export default Footer;

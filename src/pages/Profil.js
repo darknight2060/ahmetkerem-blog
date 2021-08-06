@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import { auth } from '../services/firebase';
+import { database, auth } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
 
 class Profile extends React.Component {
@@ -12,12 +12,18 @@ class Profile extends React.Component {
   }
   
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      this.setState({user: user})
+    if (!localStorage.getItem("currentUser")) window.location.href = "/giris";
+    
+    database.ref("users").on("child_added", snap => {
+      if (snap.key == localStorage.getItem("currentUser")) {
+        this.setState({ user: snap.val() });
+      }
     })
   }
 
   SignOut() {
+    localStorage.removeItem("currentUser");
+    
     auth.signOut().then(() => {
       window.location.href = "/giris";
     }).catch(error => {
@@ -34,8 +40,13 @@ class Profile extends React.Component {
       <p style={{fontSize: "30px", marginBottom: "10px", display: "none"}}>Profil</p>
 
       <div className="card">
-        {this.state.user.photoURL ?
-          <img src={this.state.user.photoURL || "/images/default.jpg"} alt="Profil Görseli" className="card-image" />
+        {this.state.user.userImage ?
+          <img
+            src={this.state.user.userImage || "/images/default.jpg"} 
+            alt="Profil Görseli" 
+            className="card-image"
+            draggable="false"
+          />
         :
           <Skeleton style={{
             width: "150px",
@@ -47,19 +58,25 @@ class Profile extends React.Component {
         }
 
         <h1 style={{margin: "15px 0"}}>
-          {this.state.user.displayName ?
-            this.state.user.displayName
+          {this.state.user.userName ?
+            this.state.user.userName
           :
             <Skeleton width={200} style={{borderRadius: "20px", opacity: ".8"}} />
           }
         </h1>
 
         <div id="email">
-          {this.state.user.email}
+          {this.state.user.userEmail}
         </div>
 
-        <div className="button-edit" onClick={() => window.location.href = "/profil/duzenle"}>
-          Düzenle
+        <div style={{margin: "20px 0 0", display: "flex", justifyContent: "center"}}>
+          <div className="button-edit" onClick={() => window.location.href = "/profil/duzenle"}>
+            Düzenle
+          </div>
+  
+          <div className="button-signOut" onClick={this.SignOut}>
+            Çıkış Yap
+          </div>
         </div>
       </div>
 
@@ -95,8 +112,8 @@ class Profile extends React.Component {
         }
     
         .button-edit {
-          width: 150px;
-          margin: 20px auto 0;
+          width: 125px;
+          margin: 0 8px 0;
           padding: 10px;
           color: #fff;
           background: var(--button-background);
@@ -109,6 +126,23 @@ class Profile extends React.Component {
 
         .button-edit:hover {
           background: var(--button-hover-background);
+        }
+
+        .button-signOut {
+          width: 125px;
+          margin: 0 8px 0;
+          padding: 10px;
+          color: #fff;
+          background: #ed1c1c;
+          border-radius: 5px;
+          outline: none;
+          user-select: none;
+          cursor: pointer;
+          transition: .1s;
+        }
+
+        .button-signOut:hover {
+          background: #cc1818;
         }
 
         .logout {

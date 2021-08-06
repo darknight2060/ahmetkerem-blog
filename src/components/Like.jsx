@@ -1,32 +1,41 @@
 import React, { Component } from "react";
-import { database } from '../services/firebase';
+import { database, auth } from '../services/firebase';
 
 class Like extends Component {
   constructor(props) {
     super(props);
     this.postID = window.location.pathname.slice(6);
-    this.database = database.ref(`posts/${this.postID}/likes`)
+    this.database = database.ref(`posts/${this.postID}/likes`);
+    this.state = {
+      liked: false,
+      likeCount: 0
+    }
+
     this.like = this.like.bind(this);
   }
 
   componentDidMount() {
     this.database.on("child_added", snap => {
+      this.setState({ likeCount: this.state.likeCount + 1 });
+
       if (snap.key == localStorage.getItem("currentUser")) {
-        document.getElementById("iy").src = "/images/liked.png";
-        document.getElementById("tooltiptext").innerText = "Beğeniyi Kaldır";
+        this.setState({ liked: true })
       }
     })
 
     this.database.on("child_removed", snap => {
+      this.setState({ likeCount: this.state.likeCount - 1 });
+
       if (snap.key == localStorage.getItem("currentUser")) {
-        document.getElementById("iy").src = "/images/like.png";
-        document.getElementById("tooltiptext").innerText = "Beğen";
+        this.setState({ liked: false })
       }
     })
   }
 
   like() {
-    if (localStorage.getItem("like-"+this.postID) == "liked") {
+    if (!auth.currentUser) return alert("nope"); //TODO: Show login dialog
+
+    if (this.state.liked == true) {
       this.database.child(localStorage.getItem("currentUser")).remove();
     } else {
       this.database.child(localStorage.getItem("currentUser")).set({
@@ -36,37 +45,52 @@ class Like extends Component {
   }
 
   render() {return (
-    <div id="labıl" className="labıl">
+    <div className="likeContainer">
       <div className="tooltip">
-        <div style={{display: "flex"}}>
-          <a id="likeCount" className="likeCount">9999</a>
 
-          <div className="iyy">
-            <img id="iy" className="iy" src="/images/like.png" onClick={this.like} />
-            <span id="tooltiptext" className="tooltiptext">Beğen</span>
+        <div style={{display: "flex", alignItems: "center"}}>
+          <a className="likeCount">
+            {this.state.likeCount}
+          </a>
+
+          <div className="likeImageContainer">
+            <img className="likeImage" 
+              src={this.state.liked == true ? "/images/liked.png" : "/images/like.png"}
+              onClick={this.like}
+              draggable="false"
+            />
+
+            <span className="tooltiptext">
+              {this.state.liked == true ? "Beğeniyi Kaldır" : "Beğen"}
+            </span>
           </div>
         </div>
+
       </div>
 
       <style>{`
-        .labıl {
+        .likeContainer {
           width: auto;
           height: auto;
           text-align: left;
           background-size: cover;
           padding: 0 30px;
         }
+        
+        .likeImageContainer {
+          display: flex;
+        }
+
+        .likeImageContainer:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
   
-        .iy {
+        .likeImage {
           width: 20px;
           height: 20px;
           object-fit: contain;
           cursor: pointer;
-        }
-
-        .iyy:hover .tooltiptext {
-          visibility: visible;
-          opacity: 1;
         }
   
         .likeCount {
@@ -92,7 +116,7 @@ class Like extends Component {
           position: absolute;
           z-index: 1;
           bottom: 30px;
-          margin-left: -75px;
+          margin-left: -55px;
           white-space: nowrap;
           user-select: none;
           opacity: 0;

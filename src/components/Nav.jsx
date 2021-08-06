@@ -1,11 +1,12 @@
 import React from 'react';
-import { auth } from '../services/firebase';
+import { database } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
 
 class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: [],
       opened: false
     }
 
@@ -13,10 +14,9 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        document.getElementById("nav-name").innerHTML = user.displayName;
-        document.getElementById("nav-pp").src = user.photoURL;
+    database.ref("users").on("child_added", snap => {
+      if (snap.key == localStorage.getItem("currentUser")) {
+        this.setState({ user: snap.val() });
       }
     })
   }
@@ -45,47 +45,65 @@ class Nav extends React.Component {
         <nav className="nav" id="nav">
           <ul id="nav-ul">
             <a href="/" className="nav-image-container">
-              <img src="/images/favicon.png" className="nav-image"/>
+              <img src="/images/favicon.png" className="nav-image" />
             </a>
-              <div className="section"></div>
+            <div className="section" />
             <li>
               <a href="/">Ana Sayfa</a>
             </li>
-              <div className="section"></div>
+            <div className="section" />
             <li>
               <a href="/hakkinda">Hakkında</a>
             </li>
-              <div className="section"></div>
+            <div className="section" />
             <li>
               <a href="/iletisim">İletişim</a>
             </li>
-              <div className="section"></div>
+              <div className="section" />
             {localStorage.getItem("currentUser") ? (
               <a href="/profil">
                 <div className="profile-div">
                   <div className="profile">
                     <span id="nav-name" className="nav-name" style={{color: "#000"}}>
-                      <Skeleton 
-                        width={100}
-                        style={{borderRadius: "20px"}} />
+                      {this.state.user.userName ?
+                        this.state.user.userName
+                      :
+                        <Skeleton 
+                          style={{width: "100px", borderRadius: "20px"}} 
+                        />
+                      }
                     </span>
 
-                    <img id="nav-pp" src="/images/default.jpg" />
+                    {this.state.user.userName ?
+                      <img
+                        id="nav-pp"
+                        src={this.state.user.userImage || "/images/example.jpg"}
+                        draggable="false"
+                      />
+                    :
+                      <Skeleton style={{
+                        width: "32px",
+                        height: "32px",
+                        borderRadius: "100%",
+                        marginLeft: "12px",
+                        boxShadow: "0 0 0px 2px var(--button-background)"}} 
+                      />
+                    }
                   </div>
                 </div>
               </a>
             ) : (
-              <div style={{display: "flex", padding: "15px 20px"}}>
-                <a href="/giris" style={{color: "var(--button-background)"}}>Giriş yap</a>
-                  <div style={{margin: "0 5px", userSelect: "none"}}>veya</div>
-                <a href="/kaydol" style={{color: "var(--button-background)"}}>Kaydol</a>
+              <div className="loginOrRegister">
+                <a href="/giris">Giriş yap</a>
+                  <div className="or">veya</div>
+                <a href="/kaydol">Kaydol</a>
               </div>
             )}
           </ul>
 
           <style>{`
             a {
-              color: #00a0d9;
+              color: var(--button-background);
               text-decoration: none;
               font-size: 16px;
               padding: 0px;
@@ -133,11 +151,12 @@ class Nav extends React.Component {
               align-items: center;
               justify-content: center;
               transition: 0.4s;
+              user-select: none;
             }
   
             nav ul li {
               color: #000;
-              padding: 15px 0;
+              padding: 17px 0;
               display: inline-block;
               position: relative;
               transition: 0.1s;
@@ -150,7 +169,7 @@ class Nav extends React.Component {
             
             nav ul li a {
               color: #000;
-              padding: 15px 20px;
+              padding: 17px 20px;
             }
 
             nav .section {
@@ -160,7 +179,7 @@ class Nav extends React.Component {
             }
 
             nav .profile-div {
-              padding: 10px 20px;
+              padding: 12px 20px;
               display: flex;
             }
 
@@ -180,6 +199,24 @@ class Nav extends React.Component {
               margin-left: 12px;
               border-radius: 100%;
               box-shadow: 0 0 0px 2px var(--button-background);
+            }
+
+            nav .loginOrRegister {
+              padding: 15px 20px;
+              display: flex;
+            }
+
+            nav .loginOrRegister a {
+              transition: .1s;
+            }
+
+            nav .loginOrRegister a:hover {
+              color: var(--button-hover-background);
+            }
+
+            nav .loginOrRegister .or {
+              margin: 0 5px;
+              user-select: none;
             }
             
             .showMenu {
@@ -261,7 +298,6 @@ class Nav extends React.Component {
               nav .section {
                 width: 90%;
                 height: 1px;
-                background: rgb(0 0 0 / 10%);
                 margin: auto;
               }
 
