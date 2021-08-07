@@ -316,6 +316,12 @@ class Nav extends React.Component {
                 width: 36px;
                 height: 36px;
               }
+
+              .loginOrRegister {
+                position: absolute;
+                top: 15px;
+                right: 0px;
+              }
             }
           `}</style>
         </nav>

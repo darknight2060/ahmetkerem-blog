@@ -188,7 +188,6 @@ class Profile extends React.Component {
           .logout {
             top: 10px;
             right: 10px;
-            display: block;
           }
         }
       `}</style>

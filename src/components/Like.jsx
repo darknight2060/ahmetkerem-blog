@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { database, auth } from '../services/firebase';
+import LoginAlert from "./LoginAlert";
 
 class Like extends Component {
   constructor(props) {
@@ -8,13 +9,19 @@ class Like extends Component {
     this.database = database.ref(`posts/${this.postID}/likes`);
     this.state = {
       liked: false,
-      likeCount: 0
+      likeCount: 0,
+
+      loaded: false
     }
 
     this.like = this.like.bind(this);
   }
 
   componentDidMount() {
+    auth.onAuthStateChanged(() => {
+      this.setState({ loaded: true });
+    })
+
     this.database.on("child_added", snap => {
       this.setState({ likeCount: this.state.likeCount + 1 });
 
@@ -33,7 +40,10 @@ class Like extends Component {
   }
 
   like() {
-    if (!auth.currentUser) return alert("nope"); //TODO: Show login dialog
+    if (!auth.currentUser) {
+             document.getElementById("alert").style.display = "block";
+      return document.getElementById("alertOverlay").style.display = "block";
+    }
 
     if (this.state.liked == true) {
       this.database.child(localStorage.getItem("currentUser")).remove();
@@ -45,7 +55,9 @@ class Like extends Component {
   }
 
   render() {return (
-    <div className="likeContainer">
+    <div className="likeContainer" style={this.state.loaded == true ? {display: "block"} : {display: "none"}}>
+      <LoginAlert />
+
       <div className="tooltip">
 
         <div style={{display: "flex", alignItems: "center"}}>

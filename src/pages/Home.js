@@ -53,7 +53,7 @@ class Home extends Component {
                     </div>
                   </div>
                 </a>
-              )}) : <img id="loading" src="/images/favicon.png"/>}
+              )}) : <img id="loadingMini" src="/images/favicon.png"/>}
             </div>
 
             <div className="popular-post-container" style={{display: "none"}}>
