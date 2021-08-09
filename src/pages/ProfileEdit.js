@@ -258,19 +258,20 @@ class ProfileEdit extends Component {
           
           @media (max-width: 700px) {
             html {
-              background: #eeeeef;
+              background: #fff;
             }
 
             .card {
               width: 100%;
+              margin: auto;
+              padding: 80px 0 30px;
+              box-shadow: none;
               display: block;
               text-align: center;
             }
 
             .card-image {
-              width: 280px;
-              margin-top: -120px;
-              border: 8px solid #f57029;
+              margin: auto;
             }
 
             .card-image-container {
@@ -287,10 +288,13 @@ class ProfileEdit extends Component {
               border-radius: 10px;
             }
 
+            .profile-edit-input {
+              max-width: 80%;
+            }
+
             .button-save {
-              right: 8px;
-              bottom: 62px;
-              position: fixed;
+              left: 5%;
+              position: absolute;
             }
           }
         `}</style>

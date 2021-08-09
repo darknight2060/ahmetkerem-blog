@@ -45,28 +45,44 @@ class CommentForm extends Component {
       <h4 className="comments-title" style={{userSelect: "none"}}>Yorumlar</h4>
 
       <div className="comment-card-edit">
-        {this.state.user.userName ?
+        {localStorage.getItem("currentUser") ?
+
+          (this.state.user.userName ? 
+            <img
+              src={this.state.user.userImage || "/images/example.jpg"}
+              className="comment-image"
+              id="commentform-image"
+              draggable="false"
+            />
+          :
+            <Skeleton style={{
+              width: "40px",
+              height: "40px",
+              margin: "10px",
+              borderRadius: "100%"}} 
+            />
+          )
+
+        :
           <img
-            src={this.state.user.userImage || "/images/example.jpg"}
+            src="/images/example.jpg"
             className="comment-image"
             id="commentform-image"
             draggable="false"
-          />
-        :
-          <Skeleton style={{
-            width: "32px",
-            height: "32px",
-            margin: "10px",
-            borderRadius: "100%"}} 
           />
         }
 
         <div style={{width: "90%"}}>          
           <div className="commentform-name" id="commentform-name">
-            {this.state.user.userName ?
-              this.state.user.userName
+            {localStorage.getItem("currentUser") ?
+
+              this.state.user.userName ?
+                this.state.user.userName
+              :
+                <Skeleton width={100} style={{borderRadius: "20px"}} />
+
             :
-            <Skeleton width={100} style={{borderRadius: "20px"}} />
+              "Misafir"
             }
           </div>
 

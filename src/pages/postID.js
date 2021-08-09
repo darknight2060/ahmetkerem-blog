@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { database } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
+import Markdown from "react-markdown";
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 import Like from "../components/Like";
@@ -19,8 +20,6 @@ class PostID extends Component {
       snap.forEach(s => {
         if (s.key == window.location.pathname.slice(6)) {
           this.setState({post: s.val()})
-
-          document.getElementById("card-content").innerText = s.val().content;
         }
       })
     })
@@ -34,7 +33,7 @@ class PostID extends Component {
         <div className='main'>
           <div className="card">
             {this.state.post.title ? 
-              <img src={this.state.post.image||"/default.jpg"} alt="Blog Fotoğrafı" className='card-image'/>
+              <img src={this.state.post.image||"/default.jpg"} alt="Yazı Fotoğrafı" className='card-image' />
             : 
               <Skeleton className="card-image-skeleton" />
             }
@@ -45,7 +44,11 @@ class PostID extends Component {
               <Skeleton className="card-title-skeleton" />
             }
 
-            <div id="card-content" className="card-content"></div>
+            <div id="card-content" className="card-content">
+              <Markdown>
+                {this.state.post.content}
+              </Markdown>
+            </div>
 
             <div className="card-date">{this.state.post.date}</div>
 

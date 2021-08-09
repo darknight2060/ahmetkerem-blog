@@ -178,13 +178,6 @@ class Profile extends React.Component {
             margin: auto;
           }
 
-          .button-edit {
-            left: 50%;
-            margin-left: -85px;
-            bottom: 10px;
-            position: fixed;
-          }
-
           .logout {
             top: 10px;
             right: 10px;
