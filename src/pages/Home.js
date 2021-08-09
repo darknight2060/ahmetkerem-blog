@@ -27,6 +27,11 @@ class Home extends Component {
         date: snap.val().date
       })
 
+      for (let i = posts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [posts[i], posts[j]] = [posts[j], posts[i]];
+      }
+
       this.setState({ posts: posts });
     })
   }

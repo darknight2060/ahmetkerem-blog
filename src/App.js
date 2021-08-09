@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profil';
 import ProfileEdit from './pages/ProfileEdit';
+import AdminPanel from './pages/AdminPanel';
 import NotFoundPage from './pages/404';
 import './css/App.css';
 
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route exact path="/kaydol" component={Register} />
             <Route exact path="/profil" component={Profile} />
             <Route exact path="/profil/duzenle" component={ProfileEdit} />
+            <Route exact path="/panel" component={AdminPanel} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </BrowserRouter>

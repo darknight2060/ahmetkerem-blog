@@ -1,5 +1,7 @@
 # TO-DO
-- Admin Paneli
+- Admin Paneli*
+- Post Paylaşma
+- Hakkında sayfası için yeni bir tasarım
 
 # Proje
 - Projeyi Bitir

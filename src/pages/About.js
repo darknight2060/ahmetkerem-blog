@@ -10,7 +10,7 @@ class About extends Component {
 
         <div className='main'>
           <div className="card">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/49c16a38805735.57701dcdd452c.gif" alt="Yazı Fotoğrafı" className='card-image' draggable="false"/>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/49c16a38805735.57701dcdd452c.gif" alt="Profil Fotoğrafı" className='card-image' />
 
             <h1 className="card-title"></h1>
 

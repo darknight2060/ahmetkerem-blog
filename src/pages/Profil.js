@@ -45,7 +45,6 @@ class Profile extends React.Component {
             src={this.state.user.userImage || "/images/default.jpg"} 
             alt="Profil Görseli" 
             className="card-image"
-            draggable="false"
           />
         :
           <Skeleton style={{

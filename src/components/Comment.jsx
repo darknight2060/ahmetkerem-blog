@@ -82,7 +82,6 @@ class Comment extends Component {
       <img
         src={this.updateImage(this.props.commentAuthor)}
         className="comment-image"
-        draggable="false"
       />
 
       <div>

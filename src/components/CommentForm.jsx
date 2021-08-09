@@ -28,6 +28,12 @@ class CommentForm extends Component {
     else {
       var date = new Date;
 
+      database.ref(`statistics/notifications`).push().set({
+        member: localStorage.getItem("currentUser") || "Misafir",
+        type: "comment",
+        date: Date.now()
+      })
+      
       database.ref(`posts/${window.location.pathname.slice(6)}/comments`).push().set({
         commentAuthor: localStorage.getItem("currentUser") || "Misafir",
         commentContent: this.state.newCommentContent,
@@ -52,7 +58,6 @@ class CommentForm extends Component {
               src={this.state.user.userImage || "/images/example.jpg"}
               className="comment-image"
               id="commentform-image"
-              draggable="false"
             />
           :
             <Skeleton style={{
@@ -68,7 +73,6 @@ class CommentForm extends Component {
             src="/images/example.jpg"
             className="comment-image"
             id="commentform-image"
-            draggable="false"
           />
         }
 

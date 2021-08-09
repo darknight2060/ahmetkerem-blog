@@ -24,7 +24,6 @@ class Contact extends Component {
 
     document.getElementById("contact-form").addEventListener('submit', event => {
       event.preventDefault();
-      console.log(event.target)
 
       emailjs.sendForm('service_1tize8k', "template_66d4i7o", event.target, "user_Vdwby8A4OwT7IbNJvylLf")
         .then(function() {
@@ -42,7 +41,7 @@ class Contact extends Component {
 
         <div className='main'>
           <div className="contact">
-            <img id="contact-image" className="contact-image" draggable="false" />
+            <img id="contact-image" className="contact-image" />
 
             <h2 className="contact-title">Sosyal Medya</h2>
 
@@ -65,9 +64,9 @@ class Contact extends Component {
             <h2 className="contact-title-second">E-Posta Gönder</h2>
 
             <form id="contact-form">
-              <input type="text" className="contact-input" placeholder="İsim" name="from_name" required />
-              <input type="text" className="contact-input" placeholder="Konu" name="from_subject" />
-              <textarea type="text" className="contact-textarea" placeholder="İçerik" name="message" required />
+              <input type="text" className="contact-input" placeholder="İsim" name="from_name" autocomplete="off" required />
+              <input type="text" className="contact-input" placeholder="Konu" name="from_subject" autocomplete="off" />
+              <textarea type="text" className="contact-textarea" placeholder="İçerik" name="message" autocomplete="off" required />
   
               <input type="submit" value="Gönder" className="contact-button" />
             </form>

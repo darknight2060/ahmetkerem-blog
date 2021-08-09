@@ -51,6 +51,12 @@ class Like extends Component {
       this.database.child(localStorage.getItem("currentUser")).set({
         liked: true
       })
+
+      database.ref(`statistics/notifications`).push().set({
+        member: localStorage.getItem("currentUser") || "Misafir",
+        type: "like",
+        date: Date.now()
+      })
     }
   }
 
@@ -69,7 +75,6 @@ class Like extends Component {
             <img className="likeImage" 
               src={this.state.liked == true ? "/images/liked.png" : "/images/like.png"}
               onClick={this.like}
-              draggable="false"
             />
 
             <span className="tooltiptext">

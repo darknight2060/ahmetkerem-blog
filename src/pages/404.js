@@ -9,7 +9,7 @@ class NotFoundPage extends React.Component {
           <Nav/>
 
           <div className="div">
-            <img src="/images/favicon.png" width="50px" draggable="false"/>
+            <img src="/images/favicon.png" width="50px" />
 
             <p className="title">Böyle bir sayfa yok gibi görünüyor...</p>
 

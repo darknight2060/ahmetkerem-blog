@@ -58,7 +58,7 @@ class SignUp extends React.Component {
           <p style={{fontWeight: "bold", userSelect: "none"}}>Kaydol</p>
           <div id="errorMessage" className="errorMessage"></div>
 
-          <input id="name" type="text" placeholder="Kullanıcı Adı" required/>
+          <input id="name" type="text" placeholder="Kullanıcı Adı" autocomplete="off" required/>
 
           <input id="email" type="email" placeholder="E-Posta" required/>
 

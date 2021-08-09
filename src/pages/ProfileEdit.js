@@ -25,9 +25,6 @@ class ProfileEdit extends Component {
       database.ref("users/" + user.uid).on(`value`, snap => {
         this.setState({ user: snap.val() });
 
-        console.log(this.state.user)
-
-        //document.getElementById("photo").src = snap.val().userImage || "/images/example.jpg";
         document.getElementById("name").value = snap.val().userName;
         document.getElementById("email").value = snap.val().userEmail;
         document.getElementById("name").disabled = false;
@@ -111,7 +108,7 @@ class ProfileEdit extends Component {
             placeholder="Kullanıcı Adı"
             className="name profile-edit-input"
             maxLength="20"
-            autoComplete="off"
+            autocomplete="off"
             onChange={event => this.setState({name: event.target.value})}
             disabled
           />
@@ -121,6 +118,7 @@ class ProfileEdit extends Component {
             type="email"
             placeholder="E-Posta"
             className="profile-edit-input"
+            autocomplete="off"
             onChange={event => this.setState({email: event.target.value})}
             disabled
           />

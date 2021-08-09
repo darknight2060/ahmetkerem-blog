@@ -78,7 +78,6 @@ class Nav extends React.Component {
                       <img
                         id="nav-pp"
                         src={this.state.user.userImage || "/images/example.jpg"}
-                        draggable="false"
                       />
                     :
                       <Skeleton style={{
