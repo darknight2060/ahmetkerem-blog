@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { database } from '../services/firebase';
+import ms from '../services/ms';
 import Nav from './../components/Nav';
-import Footer from './../components/Footer';
 import '../css/App.css';
 import '../css/Home.css';
 
@@ -24,7 +24,8 @@ class Home extends Component {
         image: snap.val().image,
         title: snap.val().title,
         content: snap.val().content,
-        date: snap.val().date
+        date: snap.val().date,
+        view: snap.val().view
       })
 
       for (let i = posts.length - 1; i > 0; i--) {
@@ -36,6 +37,16 @@ class Home extends Component {
     })
   }
 
+  getLikeCount(postID) {
+    var likes = 0;
+
+    database.ref("posts/" + postID + "/likes").on("child_added", () => {
+      likes = likes + 1;
+    })
+
+    return likes;
+  }
+
   render() {
     return (
       <div>
@@ -44,7 +55,7 @@ class Home extends Component {
         <div className="main">
 
           <div className="main2">
-            <div className="posts">
+            <div className="posts" style={{paddingTop: "80px"}}>
               {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
                 <a href={"/post/"+post.id}>
                   <div className="post">
@@ -54,27 +65,25 @@ class Home extends Component {
                       <h2 className="title">{post.title}</h2>
                       <div className="description">{post.content}</div>
                 
-                      <div className="date">{post.date}</div>
+                      <div style={{paddingTop: "10px", display: "flex", alignItems: "center"}}>
+                        <div className="views">
+                          <img src="/images/view.png" className="viewImage" />
+                          {post.view}
+                        </div>
+
+                        <div className="likes">
+                          <img src="/images/liked.png" className="likeImage" />
+                          {this.getLikeCount(post.id)}
+                        </div>
+
+                        <div className="date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>
+                      </div>
                     </div>
                   </div>
                 </a>
-              )}) : <img id="loadingMini" src="/images/favicon.png"/>}
+              )}) : <img id="loadingMini" src="/images/favicon.png" />}
             </div>
 
-            <div className="popular-post-container" style={{display: "none"}}>
-              <a href="#">
-                <div className="popular-post">
-                  <img className="image" src="/images/example.jpg"/>
-                  
-                  <div style={{padding: "0 16px"}}>
-                    <h2 className="title">Lorem Ipsum</h2>
-                    <div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc aliquet bibendum enim facilisis gravida neque. Purus non enim praesent elementum. Laoreet non curabitur gravida arcu ac. Erat velit scelerisque in dictum non consectetur a erat nam. Sed enim ut sem viverra aliquet eget sit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Arcu ac tortor dignissim convallis aenean et tortor at risus. Ipsum dolor sit amet consectetur adipiscing elit. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada.</div>
-          
-                    <div className="date">01/01/2021</div>
-                  </div>
-                </div>
-              </a>
-            </div>
           </div>
 
         </div>

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Comment from '../components/Comment';
 import CommentForm from "../components/CommentForm";
 import { database } from '../services/firebase';
+import Skeleton from "react-loading-skeleton";
+import LoadingComments from './LoadingComments';
 
 class Comments extends Component {
 constructor(props) {
@@ -41,16 +43,20 @@ componentWillMount() {
 
 render() {return (
   <div id="comments">
-    <CommentForm/>
+    <CommentForm />
 
-    {this.state.comments.map((comment) => {return (
-      <Comment 
-        commentContent={comment.commentContent}
-        commentAuthor={comment.commentAuthor}
-        commentDate={comment.commentDate}
-        commentId={comment.id}
-        key={comment.id}/>
-    )}).reverse()}
+    {this.state.comments.length > 0 ?
+      this.state.comments.map((comment) => {return (
+        <Comment 
+          commentContent={comment.commentContent}
+          commentAuthor={comment.commentAuthor}
+          commentDate={comment.commentDate}
+          commentId={comment.id}
+          key={comment.id}/>
+      )}).reverse()
+    : 
+      <LoadingComments />
+    }
 
     <style>{`
       #comments {

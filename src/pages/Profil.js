@@ -35,8 +35,6 @@ class Profile extends React.Component {
     <div>
       <Nav />
 
-      <img className="logout" onClick={this.SignOut} />
-
       <p style={{fontSize: "30px", marginBottom: "10px", display: "none"}}>Profil</p>
 
       <div className="card">
@@ -127,6 +125,10 @@ class Profile extends React.Component {
           background: var(--button-hover-background);
         }
 
+        .button-edit:active {
+          transform: scale(.95);
+        }
+
         .button-signOut {
           width: 125px;
           margin: 0 8px 0;
@@ -144,14 +146,8 @@ class Profile extends React.Component {
           background: #cc1818;
         }
 
-        .logout {
-          position: fixed;
-          width: 36px;
-          height: 36px;
-          background: #2f2d33;
-          padding: 12px;
-          border-radius: 6px;
-          display: none;
+        .button-signOut:active {
+          transform: scale(.95);
         }
 
         @media (max-width: 700px) {
@@ -175,11 +171,6 @@ class Profile extends React.Component {
           #email {
             max-width: 80%;
             margin: auto;
-          }
-
-          .logout {
-            top: 10px;
-            right: 10px;
           }
         }
       `}</style>

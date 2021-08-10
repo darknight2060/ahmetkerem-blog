@@ -59,7 +59,10 @@ class Contact extends Component {
               </a>
             </div>
 
-            <div style={{margin: "20px 0 10px", opacity: ".6", userSelect: "none"}}>veya</div>
+            <div>
+              <div className="or">veya</div>
+              <hr style={{width: "50%", marginTop: "-20px"}} />
+            </div>
             
             <h2 className="contact-title-second">E-Posta Gönder</h2>
 
@@ -136,6 +139,21 @@ class Contact extends Component {
 
           .contact .social:active {
             transform: scale(.95);
+          }
+
+          .contact .or {
+            width: max-content;
+            background: #fff;
+            margin: 20px auto 10px;
+            padding: 0 16px;
+            user-select: none;
+            position: relative;
+          }
+
+          .contact hr {
+            width: 50%;
+            margin-top: -20px;
+            border-color: rgb(238 238 239 / 50%);
           }
     
           .contact-input {

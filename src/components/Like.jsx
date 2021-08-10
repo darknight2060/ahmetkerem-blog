@@ -9,19 +9,13 @@ class Like extends Component {
     this.database = database.ref(`posts/${this.postID}/likes`);
     this.state = {
       liked: false,
-      likeCount: 0,
-
-      loaded: false
+      likeCount: 0
     }
 
     this.like = this.like.bind(this);
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(() => {
-      this.setState({ loaded: true });
-    })
-
     this.database.on("child_added", snap => {
       this.setState({ likeCount: this.state.likeCount + 1 });
 
@@ -61,7 +55,7 @@ class Like extends Component {
   }
 
   render() {return (
-    <div className="likeContainer" style={this.state.loaded == true ? {display: "block"} : {display: "none"}}>
+    <div className="likeContainer">
       <LoginAlert />
 
       <div className="tooltip">
@@ -91,7 +85,6 @@ class Like extends Component {
           height: auto;
           text-align: left;
           background-size: cover;
-          padding: 0 30px;
         }
         
         .likeImageContainer {
@@ -104,8 +97,8 @@ class Like extends Component {
         }
   
         .likeImage {
-          width: 20px;
-          height: 20px;
+          width: 22px;
+          height: 22px;
           object-fit: contain;
           cursor: pointer;
         }

@@ -11,7 +11,10 @@ class AdminPanel extends React.Component {
       users: [],
 
       logined: false,
-      notifications: []
+      notifications: [],
+
+      viewCount: 0,
+      likeCount: 0
     }
   }
   
@@ -64,12 +67,17 @@ class AdminPanel extends React.Component {
 
       this.setState({ notifications: previousNotifications })
     })
+
+
+    database.ref("posts").on("child_added", snap => {
+      this.getCount(snap.key);
+    })
   }
 
   categorizeNotf(notf) {
     var member = "";
 
-    if (notf.member == "Misafir") return "Misafir";
+    if (notf.member == "Misafir") member = "Misafir";
 
     this.state.users.forEach(p => {
       if (p.id !== notf.member) return;
@@ -78,6 +86,16 @@ class AdminPanel extends React.Component {
 
     if (notf.type == "like") return `${member} bir yazı beğendi.`;
     if (notf.type == "comment") return `${member} bir yorum yaptı.`;
+  }
+
+  getCount(postID) {
+    database.ref("posts/" + postID + "/likes").on("child_added", () => {
+      this.setState({ likeCount: this.state.likeCount + 1 });
+    })
+
+    database.ref("posts/" + postID).on("value", snap => {
+      this.setState({ viewCount: this.state.viewCount + snap.val().view });
+    })
   }
 
   render() {return (
@@ -96,9 +114,21 @@ class AdminPanel extends React.Component {
             </form>
           </div>
         :
-          <div style={{display: "flex"}}>
+          <div className="panelContainer">
             <div className="panel-mid">
+              <div className="head">İstatistikler</div>
+
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <div className="count">
+                  <img src="/images/view.png" />
+                  <b>{this.state.viewCount}</b>
+                </div>
   
+                <div className="count">
+                  <img src="/images/liked.png" />
+                  <b>{this.state.likeCount}</b>
+                </div>
+              </div>
             </div>
   
             <div className="panel-notfs">
@@ -180,19 +210,59 @@ class AdminPanel extends React.Component {
           transform: scale(.95);
         }
 
+        .panelContainer {
+          display: flex;
+        }
 
         .panel-mid {
           width: 700px;
           height: 75vh;
           background: #fff;
-          border-radius: 10px;
+          border-radius: 10px 0 0 10px;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden auto;
+        }
+
+        .panel-mid .head {
+          color: #fff;
+          font-size: 18px;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 20px;
+          background: rgb(0 211 128);
+          user-select: none;
+        }
+
+        .panel-mid img {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+        }
+
+        .panel-mid b {
+          font-size: 25px;
+          user-select: none;
+        }
+        
+        .panel-mid .count {
+          width: max-content;
+          padding: 30px 20px 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          transition: .1s;
+        }
+        
+        .panel-mid .count:hover {
+          transform: scale(1.1);
         }
 
         .panel-notfs {
           width: 300px;
           height: 75vh;
           background: #fff;
-          border-left: 2px solid #ccc;
+          border-left: 2px solid var(--button-background);
           border-radius: 0 10px 10px 0;
           float: right;
           overflow: hidden;
@@ -255,10 +325,6 @@ class AdminPanel extends React.Component {
           text-transform: uppercase;
         }
 
-        .panel-notf .notf-content {
-          
-        }
-
         @media (max-width: 700px) {
           html {
             background: #fff;
@@ -267,7 +333,6 @@ class AdminPanel extends React.Component {
           .panel-card {
             width: 100%;
             margin: auto;
-            padding: 80px 0 30px;
             box-shadow: 0 0;
             display: block;
             text-align: center;
@@ -275,6 +340,23 @@ class AdminPanel extends React.Component {
 
           .panel-input {
             width: 80%;
+          }
+
+          .panelContainer {
+            display: initial;
+          }
+
+          .panel-mid {
+            width: 100%;
+            height: 50vh;
+            margin: auto;
+            border-radius: 0;
+          }
+
+          .panel-notfs {
+            width: 100%;
+            height: 50vh;
+            border-radius: 0;
           }
         }
       `}</style>

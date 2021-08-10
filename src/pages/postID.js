@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { database } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
 import Markdown from "react-markdown";
+import ms from '../services/ms';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 import Like from "../components/Like";
@@ -10,16 +11,33 @@ import Comments from '../components/Comments';
 class PostID extends Component {
   constructor(props) {
     super(props);
+    this.postID = window.location.pathname.slice(6);
     this.state = {
-      post: []
+      post: [],
+      loaded: false
     }
   }
 
   componentDidMount() {
-    database.ref(`posts`).on("value", snap => {
+    database.ref("posts/" + this.postID).get().then(snap => {
+      if (!snap.exists()) return window.location.href = "/404";
+    })
+
+    database.ref("posts").on("value", snap => {
       snap.forEach(s => {
-        if (s.key == window.location.pathname.slice(6)) {
-          this.setState({post: s.val()})
+        if (s.key == this.postID) {
+          if (!localStorage.getItem("view_" + this.postID)) {
+            localStorage.setItem("view_" + this.postID, true)
+
+            database.ref(`posts/${this.postID}`).update({
+              view: s.val().view + 1
+            })
+          }
+
+          this.setState({ 
+            post: s.val(),
+            loaded: true
+          });
         }
       })
     })
@@ -50,9 +68,27 @@ class PostID extends Component {
               </Markdown>
             </div>
 
-            <div className="card-date">{this.state.post.date}</div>
+            <div className="card-date">
+              {this.state.post.date ? 
+                ms(Date.now() - this.state.post.date || 0, {long: true}) + " önce"
+              :
+                ""
+              }
+            </div>
 
-            <Like />
+            {this.state.loaded == true ?
+              <div style={{display: "flex"}}>
+                <div className="viewContainer">
+                  <a className="viewCount">{this.state.post.view}</a>
+                  <img src="/images/view.png" className="viewImage" />
+                </div>
+
+                <Like />
+              </div>
+            :
+              ""
+            }
+
             <Comments />
           </div>
         </div>
@@ -121,6 +157,24 @@ class PostID extends Component {
           .card-date {
             padding: 30px;
             text-align: right;
+          }
+
+          .card .viewContainer {
+            padding: 0 10px 0 30px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+          }
+
+          .card .viewCount {
+            color: #000;
+            margin-right: 5px;
+          }
+
+          .card .viewImage {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
           }
     
           @media (max-width: 700px) {

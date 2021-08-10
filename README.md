@@ -1,6 +1,6 @@
 # TO-DO
 - Admin Paneli*
-- Post Paylaşma
+- - Post Paylaşma
 - Hakkında sayfası için yeni bir tasarım
 
 # Proje

@@ -49,6 +49,10 @@ button {
   user-select: none;
 }
 
+button:active {
+  transform: scale(.95);
+}
+
 .overlay-img {
   animation: loadingAnimation2 ease-in-out 1.5s infinite;
 }

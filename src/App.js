@@ -2,6 +2,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import Home from './pages/Home';
 import PostID from './pages/postID';
+import Search from './pages/Search';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path="/post/:id" component={PostID} />
+            <Route exact path="/ara" component={Search} />
             <Route exact path="/hakkinda" component={About} />
             <Route exact path="/iletisim" component={Contact} />
             <Route exact path="/iletisim" component={Contact} />

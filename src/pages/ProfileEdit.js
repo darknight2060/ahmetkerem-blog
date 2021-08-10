@@ -253,6 +253,10 @@ class ProfileEdit extends Component {
           .button-save:hover {
             background: var(--button-hover-background);
           }
+
+          .button-save:active {
+            transform: scale(.95);
+          }
           
           @media (max-width: 700px) {
             html {

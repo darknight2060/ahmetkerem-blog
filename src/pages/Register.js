@@ -10,6 +10,14 @@ class SignUp extends React.Component {
     this.SignUp = this.SignUp.bind(this);
   }
 
+  componentDidMount() {
+    window.addEventListener("keypress", (e) => {
+      if (e.keyCode == "13") document.getElementById("registerButton").click();
+    })
+    
+    if (localStorage.getItem("currentUser") !== null) window.location.href = "/";
+  }
+
   async SignUp() {
     const emailValue = document.getElementById("email").value;
     const passValue = document.getElementById("pass").value;
@@ -38,14 +46,7 @@ class SignUp extends React.Component {
     });
   }
   
-  render() {
-    window.addEventListener("keypress", (e) => {
-      if (e.keyCode == "13") document.getElementById("registerButton").click();
-    })
-    
-    if (localStorage.getItem("currentUser") !== null) window.location.href = "/";
-
-  return (
+  render() {return (
     <div>
       <Nav />
 
@@ -178,8 +179,7 @@ class SignUp extends React.Component {
         `}</style>
       </div>
     </div>
-    )
-  };
+  )};
 };
 
 export default SignUp;

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { database, auth } from '../services/firebase';
+import React, { Component } from 'react';
+import { database } from '../services/firebase';
 import Skeleton from "react-loading-skeleton";
 
 class CommentForm extends Component {
@@ -90,16 +90,36 @@ class CommentForm extends Component {
             }
           </div>
 
-          <textarea 
-            placeholder="Yorum Metni" 
-            className="commentInput"
-            value={this.state.newCommentContent}
-            onChange={event => this.setState({newCommentContent: event.target.value})}
-          />
-
-          <button className="shareButton" onClick={this.shareComment}>
-            Yayınla
-          </button>
+          {localStorage.getItem("currentUser") ?
+            this.state.user.userName ?
+              <React.Fragment>
+                <textarea 
+                  placeholder="Yorum Metni" 
+                  className="commentInput"
+                  value={this.state.newCommentContent}
+                  onChange={event => this.setState({newCommentContent: event.target.value})}
+                />
+      
+                <button className="shareButton" onClick={this.shareComment}>
+                  Yayınla
+                </button>
+              </React.Fragment>
+            :
+              ""
+          :
+            <React.Fragment>
+              <textarea 
+                placeholder="Yorum Metni" 
+                className="commentInput"
+                value={this.state.newCommentContent}
+                onChange={event => this.setState({newCommentContent: event.target.value})}
+              />
+    
+              <button className="shareButton" onClick={this.shareComment}>
+                Yayınla
+              </button>
+            </React.Fragment>
+          }
         </div>
       </div>
 

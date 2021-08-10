@@ -153,6 +153,7 @@ class Comment extends Component {
             height: auto;
             margin: 18px 0;
             padding-bottom: 10px;
+            overflow: hidden;
           }
         }
       `}</style>
