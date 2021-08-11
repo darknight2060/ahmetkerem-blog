@@ -125,7 +125,6 @@ const Login = () => {
           
           button:hover {
             background: var(--button-hover-background);
-            cursor: pointer;
           }
     
           .text {

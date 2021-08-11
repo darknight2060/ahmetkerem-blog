@@ -47,6 +47,10 @@ class Home extends Component {
     return likes;
   }
 
+  search() {
+    window.location.href = "/ara";
+  }
+
   render() {
     return (
       <div>
@@ -55,7 +59,13 @@ class Home extends Component {
         <div className="main">
 
           <div className="main2">
-            <div className="posts" style={{paddingTop: "80px"}}>
+            <div className="searchContainer">
+              <button onClick={this.search} className="searchIt" style={{background: "none"}}>
+                <img src="/images/search.png" style={{width: "32px", height: "32px"}} />
+              </button>
+            </div>
+
+            <div className="posts">
               {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
                 <a href={"/post/"+post.id}>
                   <div className="post">
@@ -86,6 +96,14 @@ class Home extends Component {
 
           </div>
 
+          <style>{`
+            @media (max-width: 900px) {
+              nav {
+                width: max-content;
+              }
+            }
+          `}</style>
+          
         </div>
       </div>
     )

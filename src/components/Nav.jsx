@@ -26,13 +26,11 @@ class Nav extends React.Component {
       this.setState({ opened: true })
 
       document.getElementById("nav-ul").style.left = "0";
-      document.getElementById("showMenu").style.backgroundColor = "#000";
       document.getElementById("showMenu").innerHTML = "&#x2715;";
     } else {
       this.setState({ opened: false })
 
       document.getElementById("nav-ul").style.left = "-120%";
-      document.getElementById("showMenu").style.backgroundColor = "rgb(0 211 128 / 80%)";
       document.getElementById("showMenu").innerHTML = "&#9776;";
     }
   }
@@ -198,6 +196,7 @@ class Nav extends React.Component {
               margin-left: 12px;
               border-radius: 100%;
               box-shadow: 0 0 0px 2px var(--button-background);
+              object-fit: cover;
             }
 
             nav .loginOrRegister {
@@ -221,19 +220,15 @@ class Nav extends React.Component {
             .showMenu {
               display: none;
               width: 30px;
+              height: 46px;
+              background: #fff;
               text-align: center;
-              top: 8px;
-              left: 10px;
-              color: white;
-              font-size: 28px;
+              font-size: 32px;
+              line-height: 48px;
               position: fixed;
-              padding: 10px 15px 10px 15px;
-              background-color: rgb(0 211 128 / 80%);
-              border-radius: 5px;
+              padding: 9.5px 25px;
               z-index: 101;
               cursor: pointer;
-              backdrop-filter: blur(2px);
-              box-shadow: 0 2px 4px #000;
             }
             
             @media (max-width: 900px) {
@@ -242,10 +237,12 @@ class Nav extends React.Component {
               }
 
               nav {
-                width: 50%;
+                width: 100%;
+                height: 65px;
+                background: #fff;
                 float: right;
-                height: 0;
-                z-index:100;
+                z-index: 100;
+                box-shadow: 0 3px 16px rgb(0 0 0 / 12%);
               }
 
               .nav-image-container {
@@ -302,7 +299,7 @@ class Nav extends React.Component {
 
               nav .profile-div {
                 position: absolute;
-                top: 12px;
+                top: 2.5px;
                 right: 0px;
                 border-radius: 40px 0 0 40px;
               }

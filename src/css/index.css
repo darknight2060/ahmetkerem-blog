@@ -49,6 +49,10 @@ button {
   user-select: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 button:active {
   transform: scale(.95);
 }

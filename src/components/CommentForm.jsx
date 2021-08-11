@@ -188,7 +188,6 @@ class CommentForm extends Component {
 
         .shareButton:hover {
           background: var(--button-hover-background);
-          cursor: pointer;
         }
 
         @media (max-width: 623px) {

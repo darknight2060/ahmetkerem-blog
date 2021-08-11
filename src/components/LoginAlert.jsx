@@ -71,7 +71,6 @@ class LoginAlert extends Component {
         .alert button {
           margin-top: 5px;
           outline: none;
-          cursor: pointer;
         }
 
         .onay {
@@ -84,7 +83,6 @@ class LoginAlert extends Component {
           border-radius: 5px;
           outline: none;
           user-select: none;
-          cursor: pointer;
           transition: .1s;
         }
 
@@ -102,7 +100,6 @@ class LoginAlert extends Component {
           border-radius: 5px;
           outline: none;
           user-select: none;
-          cursor: pointer;
           transition: .1s;
         }
 

@@ -228,6 +228,7 @@ class Contact extends Component {
     
             .contact {
               margin: 0 auto;
+              padding: 40px 0 50px;
               border-radius: 0;
             }
 

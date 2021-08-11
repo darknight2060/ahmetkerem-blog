@@ -58,6 +58,10 @@ class Search extends Component {
         this.setState({ posts: posts });
       }
     })
+
+    window.addEventListener("keypress", (e) => {
+      if (e.keyCode == "13") document.getElementById("searchIt").click();
+    })
   }
 
   getLikeCount(postID) {
@@ -83,19 +87,19 @@ class Search extends Component {
         <div className="main">
 
           <div className="main2">
-            <div className="search-div">
+            <div className="searchContainer">
               <input type="search" id="searchInput" placeholder="Yazılarda Ara"></input>
-              <button onClick={this.search}>Ara</button>
+              <button onClick={this.search} className="searchIt" id="searchIt" >
+                <img src="/images/search.png" />
+              </button>
             </div>
 
-            <h1>{this.searched == true ? 
-              `"${this.searchText}" sorgusu için arama sonuçları:`
-            :
-              ""
-            }</h1>
+            <h1 style={this.searched == true ? {} : {display: "none"}}>
+              "{this.searchText}" sorgusu için arama sonuçları:
+            </h1>
 
             <p id="errorText" style={window.location.search.length > 2 ? 
-              {fontSize: "22px", marginTop: "-30px", textAlign: "center", userSelect: "none"}
+              {}
             :
               {display: "none"}}
             >
@@ -123,7 +127,7 @@ class Search extends Component {
                           {this.getLikeCount(this.searched == true ? post.item.id : post.id)}
                         </div>
 
-                        <div className="date">{ms(Date.now() - this.searched == true ? post.item.date : post.date, {long: true}) + " önce"}</div>
+                        <div className="date">{ms(Date.now() - (this.searched == true ? post.item.date : post.date), {long: true}) + " önce"}</div>
                       </div>
                     </div>
                   </div>
@@ -133,6 +137,14 @@ class Search extends Component {
 
           </div>
 
+          <style>{`
+            @media (max-width: 900px) {
+              nav {
+                width: max-content;
+              }
+            }
+          `}</style>
+          
         </div>
       </div>
     )

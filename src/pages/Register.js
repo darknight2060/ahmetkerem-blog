@@ -147,7 +147,6 @@ class SignUp extends React.Component {
           
           button:hover {
             background: var(--button-hover-background);
-            cursor: pointer;
           }
   
           .text {

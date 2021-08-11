@@ -90,7 +90,7 @@ Id aliquet risus feugiat in ante metus dictum at. Sed turpis tincidunt id alique
     
             .card {
               margin: 0 auto;
-              padding: 70px 0 35px;
+              padding: 100px 0 35px;
               border-radius: 0;
               box-shadow: 0px 10px 16px rgb(0 0 0 / 94%);
             }

@@ -158,7 +158,7 @@ class Profile extends React.Component {
           .card {
             width: 100%;
             margin: auto;
-            padding: 80px 0 30px;
+            padding: 100px 0 30px;
             box-shadow: 0 0;
             display: block;
             text-align: center;

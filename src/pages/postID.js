@@ -188,6 +188,7 @@ class PostID extends Component {
     
             .card {
               margin: 0 auto;
+              padding-top: 60px;
               border-radius: 0;
             }
 
