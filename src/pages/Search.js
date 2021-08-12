@@ -132,7 +132,7 @@ class Search extends Component {
                     </div>
                   </div>
                 </a>
-              )}) : <img id="loadingMini" src="/images/favicon.png" style={{top: "280px"}} />}
+              )}) : <img id="loadingMini" src="/images/favicon.png" style={{top: "300px"}} />}
             </div>
 
           </div>

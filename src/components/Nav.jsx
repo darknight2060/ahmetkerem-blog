@@ -304,6 +304,10 @@ class Nav extends React.Component {
                 border-radius: 40px 0 0 40px;
               }
 
+              nav .profile-div:hover {
+                background: initial;
+              }
+
               nav .name {
                 font-size: 18px;
               }

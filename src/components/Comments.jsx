@@ -11,6 +11,8 @@ constructor(props) {
   this.database = database.ref(`posts/${window.location.pathname.slice(6)}/comments`);
   this.state = {
     comments: [],
+
+    loaded: false
   };
 }
 
@@ -28,6 +30,7 @@ componentWillMount() {
       comments: previousComments,
     })
   })
+
   this.database.on('child_removed', snap => {
     for (var i = 0; i < previousComments.length; i++) {
       if (previousComments[i].id === snap.key) {
@@ -38,6 +41,10 @@ componentWillMount() {
     this.setState({
       comments: previousComments,
     })
+  })
+
+  database.ref("posts").on("child_added", snap => {
+    this.setState({ loaded: true });
   })
 }
 
@@ -55,7 +62,11 @@ render() {return (
           key={comment.id}/>
       )}).reverse()
     : 
-      <LoadingComments />
+      (this.state.loaded == true ?
+        ""
+      :
+        <LoadingComments />
+      )
     }
 
     <style>{`

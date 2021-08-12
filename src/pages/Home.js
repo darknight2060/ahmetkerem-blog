@@ -51,63 +51,61 @@ class Home extends Component {
     window.location.href = "/ara";
   }
 
-  render() {
-    return (
-      <div>
-        <Nav/>
+  render() {return (
+    <div>
+      <Nav/>
 
-        <div className="main">
+      <div className="main">
 
-          <div className="main2">
-            <div className="searchContainer">
-              <button onClick={this.search} className="searchIt" style={{background: "none"}}>
-                <img src="/images/search.png" style={{width: "32px", height: "32px"}} />
-              </button>
-            </div>
-
-            <div className="posts">
-              {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
-                <a href={"/post/"+post.id}>
-                  <div className="post">
-                    <img className="image" src={post.image}/>
-                    
-                    <div style={{padding: "0 16px"}}>
-                      <h2 className="title">{post.title}</h2>
-                      <div className="description">{post.content}</div>
-                
-                      <div style={{paddingTop: "10px", display: "flex", alignItems: "center"}}>
-                        <div className="views">
-                          <img src="/images/view.png" className="viewImage" />
-                          {post.view}
-                        </div>
-
-                        <div className="likes">
-                          <img src="/images/liked.png" className="likeImage" />
-                          {this.getLikeCount(post.id)}
-                        </div>
-
-                        <div className="date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              )}) : <img id="loadingMini" src="/images/favicon.png" />}
-            </div>
-
+        <div className="main2">
+          <div className="searchContainer">
+            <button onClick={this.search} className="searchIt" style={{background: "none"}}>
+              <img src="/images/search.png" style={{width: "32px", height: "32px"}} />
+            </button>
           </div>
 
-          <style>{`
-            @media (max-width: 900px) {
-              nav {
-                width: max-content;
-              }
-            }
-          `}</style>
-          
+          <div className="posts">
+            {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
+              <a href={"/post/"+post.id}>
+                <div className="post">
+                  <img className="image" src={post.image}/>
+                  
+                  <div style={{padding: "0 16px"}}>
+                    <h2 className="title">{post.title}</h2>
+                    <div className="description">{post.content}</div>
+              
+                    <div style={{paddingTop: "10px", display: "flex", alignItems: "center"}}>
+                      <div className="views">
+                        <img src="/images/view.png" className="viewImage" />
+                        {post.view}
+                      </div>
+
+                      <div className="likes">
+                        <img src="/images/liked.png" className="likeImage" />
+                        {this.getLikeCount(post.id)}
+                      </div>
+
+                      <div className="date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            )}) : <img id="loadingMini" src="/images/favicon.png" style={{top: "200px"}} />}
+          </div>
+
         </div>
+
+        <style>{`
+          @media (max-width: 900px) {
+            nav {
+              width: max-content;
+            }
+          }
+        `}</style>
+        
       </div>
-    )
-  }
+    </div>
+  )}
 };
 
 export default Home;

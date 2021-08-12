@@ -10,7 +10,7 @@
 }
 
 .posts {
-  max-width: 870px;
+  width: 870px;
   padding: 25px 0 50px;
 }
 
@@ -187,7 +187,7 @@
 @media (max-width: 600px) {
   .main2 h1 {
     margin: 0;
-    padding: 110px 0 30px;
+    padding: 110px 15px 30px;
   }
 
   .post .image {
