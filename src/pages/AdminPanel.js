@@ -1,7 +1,10 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import { database, auth } from '../services/firebase';
-import ms from '../services/ms';
+import Notifications from '../components/panelComponents/Notifications';
+import PostForm from '../components/panelComponents/PostForm';
+import Posts from '../components/panelComponents/Posts';
+import Statistics from '../components/panelComponents/Statistics';
+import { database } from '../services/firebase';
 
 class AdminPanel extends React.Component {
   constructor(props) {
@@ -9,16 +12,21 @@ class AdminPanel extends React.Component {
     this.database = database.ref("users");
     this.state = {
       users: [],
+      posts: [],
+      notifications: [],
 
       logined: false,
-      notifications: [],
+      panelState: 0,
 
       viewCount: 0,
       likeCount: 0
     }
+
+    this.goPost = this.goPost.bind(this);
   }
   
   componentDidMount() {
+    const previousPosts = this.state.posts;
     const previousUsers = this.state.users;
 
     this.database.on('child_added', snap => {
@@ -69,23 +77,16 @@ class AdminPanel extends React.Component {
     })
 
 
-    database.ref("posts").on("child_added", snap => {
+    database.ref("posts").orderByChild("date").on("child_added", snap => {
+      previousPosts.push(snap.val());
+      this.setState({ posts: previousPosts });
+
       this.getCount(snap.key);
     })
-  }
 
-  categorizeNotf(notf) {
-    var member = "";
-
-    if (notf.member == "Misafir") member = "Misafir";
-
-    this.state.users.forEach(p => {
-      if (p.id !== notf.member) return;
-      else member = p.name;
+    window.addEventListener("keypress", e => {
+      if (e.key == "a") this.setState({ logined: true });
     })
-
-    if (notf.type == "like") return `${member} bir yazı beğendi.`;
-    if (notf.type == "comment") return `${member} bir yorum yaptı.`;
   }
 
   getCount(postID) {
@@ -98,11 +99,36 @@ class AdminPanel extends React.Component {
     })
   }
 
+  goPost() {
+    this.setState({ panelState: 3 });
+  }
+
   render() {return (
     <div>
       <Nav />
 
-      <div className="panel-card">
+      <div className="panel-card"
+        style={this.state.panelState == 3 ? {height: "100%", marginBottom: "40px"} : {}}>
+          
+        <button 
+          onClick={e => this.setState({ panelState: 0 })}
+          className="tab-button"
+          style={this.state.panelState == 0 ? {background: "var(--button-background)"} : {}}
+        >  İstatistikler  </button>
+
+        <button
+          onClick={e => this.setState({ panelState: 1 })}
+          className="tab-button"
+          style={this.state.panelState == 1 ? {background: "var(--button-background)"} : {}}
+        > Bildirimler </button>
+
+        <button
+          onClick={e => this.setState({ panelState: 2 })}
+          className="tab-button"
+          style={this.state.panelState == 2 ? {background: "var(--button-background)"} : {}}
+        > Yazılar </button>
+
+
         {this.state.logined == false ?
           <div style={{paddingTop: "20vh"}}>
             <h1 className="panel-card-h1">Panel'e Giriş Yap</h1>
@@ -114,38 +140,35 @@ class AdminPanel extends React.Component {
             </form>
           </div>
         :
-          <div className="panelContainer">
-            <div className="panel-mid">
-              <div className="head">İstatistikler</div>
+          <div>
+            {this.state.panelState == 0 ? 
+              <Statistics
+                viewCount={this.state.viewCount} 
+                likeCount={this.state.likeCount}
+              />
+            : ""}
 
-              <div style={{display: "flex", justifyContent: "center"}}>
-                <div className="count">
-                  <img src="/images/view.png" />
-                  <b>{this.state.viewCount}</b>
-                </div>
-  
-                <div className="count">
-                  <img src="/images/liked.png" />
-                  <b>{this.state.likeCount}</b>
-                </div>
+            {this.state.panelState == 1 ? 
+              <Notifications
+                users={this.state.users}
+                notifications={this.state.notifications}
+              />
+            : ""}
+
+            {this.state.panelState == 2 ? 
+              <Posts
+                posts={this.state.posts}
+                goPost={this.goPost}
+              />
+            : ""}
+
+            {this.state.panelState == 3 ? 
+              <div>
+                <PostForm
+                  goBack={() => this.setState({ panelState: 2 })}
+                />
               </div>
-            </div>
-  
-            <div className="panel-notfs">
-              <div className="head">Bildirimler</div>
-              <div className="panel-notfs-overlay">
-                {this.state.notifications.map(notf => {return (
-                  <div className="panel-notf">
-                    <div className="img" />
-                
-                    <div style={{textAlign: "left"}}>
-                      <div className="notf-date">{ms(Date.now() - notf.date, {long: true}) + " önce"}</div>
-                      <div className="notf-content">{this.categorizeNotf(notf)}</div>
-                    </div>
-                  </div>
-                )}).reverse()}
-              </div>
-            </div>
+            : ""}
           </div>
         }
       </div>
@@ -210,21 +233,23 @@ class AdminPanel extends React.Component {
           transform: scale(.95);
         }
 
-        .panelContainer {
-          display: flex;
+        .tab-button {
+          margin: 10px 5px;
+          padding: 8px 12px;
+          font-weight: bold;
+          color: #fff;
+          background: var(--button-hover-background);
+          border: 0;
+          border-radius: 5px;
+          outline: none;
+          transition: .1s;
         }
 
-        .panel-mid {
-          width: 700px;
-          height: 75vh;
-          background: #fff;
-          border-radius: 10px 0 0 10px;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden auto;
+        .tab-button:hover {
+          background: var(--button-background);
         }
 
-        .panel-mid .head {
+        .head {
           color: #fff;
           font-size: 18px;
           font-weight: bold;
@@ -234,95 +259,13 @@ class AdminPanel extends React.Component {
           user-select: none;
         }
 
-        .panel-mid img {
-          width: 64px;
-          height: 64px;
-          object-fit: contain;
-        }
-
-        .panel-mid b {
-          font-size: 25px;
-          user-select: none;
-        }
-        
-        .panel-mid .count {
-          width: max-content;
-          padding: 30px 20px 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          transition: .1s;
-        }
-        
-        .panel-mid .count:hover {
-          transform: scale(1.1);
-        }
-
-        .panel-notfs {
-          width: 300px;
-          height: 75vh;
+        .panel-tab {
+          width: 100%;
+          height: 72vh;
           background: #fff;
-          border-left: 2px solid var(--button-background);
-          border-radius: 0 10px 10px 0;
+          border-radius: 0 0 10px 10px;
           float: right;
           overflow: hidden;
-        }
-
-        .panel-notfs-overlay {
-          height: calc(100% - 65px);
-          overflow: hidden auto;
-        }
-        
-        .panel-notfs-overlay::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        .panel-notfs-overlay::-webkit-scrollbar-thumb {
-          background: #ddd;
-        }
-
-        .panel-notfs-overlay::-webkit-scrollbar-thumb:hover {
-          background: #bbb;
-        }
-
-        .panel-notfs .head {
-          color: #fff;
-          font-size: 18px;
-          font-weight: bold;
-          text-transform: uppercase;
-          padding: 20px;
-          background: rgb(0 211 128);
-          user-select: none;
-        }
-        
-        .panel-notf {
-          padding: 15px 20px;
-          border-bottom: 1px solid #e2e2e2;
-          display: flex;
-          user-select: none;
-          transition: .1s;
-        }
-
-        .panel-notf:hover {
-          background: #ececec;
-        }
-
-        .panel-notf .img {
-          width: 22px;
-          height: 22px;
-          margin: auto 15px auto 0;
-          background: #000;
-          border-radius: 50px;
-          background: url(https://cdn2.iconfinder.com/data/icons/racket-sports-1/24/badminton_Copy-512.png);
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-
-        .panel-notf .notf-date {
-          color: #8e8e8e;
-          font-size: 12px;
-          font-style: italic;
-          text-transform: uppercase;
         }
 
         @media (max-width: 700px) {
@@ -340,23 +283,6 @@ class AdminPanel extends React.Component {
 
           .panel-input {
             width: 80%;
-          }
-
-          .panelContainer {
-            display: initial;
-          }
-
-          .panel-mid {
-            width: 100%;
-            height: 50vh;
-            margin: auto;
-            border-radius: 0;
-          }
-
-          .panel-notfs {
-            width: 100%;
-            height: 50vh;
-            border-radius: 0;
           }
         }
       `}</style>
