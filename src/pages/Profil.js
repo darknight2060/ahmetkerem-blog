@@ -82,7 +82,7 @@ class Profile extends React.Component {
           color: #000;
           border-radius: 10px;
           background: #fff;
-          box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
+          box-shadow: 0px 10px 16px rgb(0 0 0 / 10%);
           width: 100%;
           max-width: 400px;
           margin: 120px auto 0;

@@ -18,6 +18,8 @@ class AdminPanel extends React.Component {
       logined: false,
       panelState: 0,
 
+      currentPost: "",
+
       viewCount: 0,
       likeCount: 0
     }
@@ -78,9 +80,15 @@ class AdminPanel extends React.Component {
 
 
     database.ref("posts").orderByChild("date").on("child_added", snap => {
-      previousPosts.push(snap.val());
-      this.setState({ posts: previousPosts });
+      previousPosts.push({
+        id: snap.key,
+        image: snap.val().image,
+        title: snap.val().title,
+        content: snap.val().content,
+        date: snap.val().date
+      });
 
+      this.setState({ posts: previousPosts });
       this.getCount(snap.key);
     })
 
@@ -95,11 +103,15 @@ class AdminPanel extends React.Component {
     })
 
     database.ref("posts/" + postID).on("value", snap => {
-      this.setState({ viewCount: this.state.viewCount + snap.val().view });
+      database.ref("posts/" + snap.key).get().then(snap => {
+        if (snap.exists())
+          this.setState({ viewCount: this.state.viewCount + snap.val().view });
+      })
     })
   }
 
-  goPost() {
+  goPost(id) {
+    this.setState({ currentPost: id })
     this.setState({ panelState: 3 });
   }
 
@@ -110,24 +122,29 @@ class AdminPanel extends React.Component {
       <div className="panel-card"
         style={this.state.panelState == 3 ? {height: "100%", marginBottom: "40px"} : {}}>
           
-        <button 
-          onClick={e => this.setState({ panelState: 0 })}
-          className="tab-button"
-          style={this.state.panelState == 0 ? {background: "var(--button-background)"} : {}}
-        >  İstatistikler  </button>
-
-        <button
-          onClick={e => this.setState({ panelState: 1 })}
-          className="tab-button"
-          style={this.state.panelState == 1 ? {background: "var(--button-background)"} : {}}
-        > Bildirimler </button>
-
-        <button
-          onClick={e => this.setState({ panelState: 2 })}
-          className="tab-button"
-          style={this.state.panelState == 2 ? {background: "var(--button-background)"} : {}}
-        > Yazılar </button>
-
+        {this.state.logined == true ?
+          <div style={{borderBottom: "5px solid var(--button-background)"}}>
+            <button 
+              onClick={e => this.setState({ panelState: 0 })}
+              className="tab-button"
+              style={this.state.panelState == 0 ? {background: "var(--button-background)"} : {}}
+            >  İstatistikler  </button>
+    
+            <button
+              onClick={e => this.setState({ panelState: 1 })}
+              className="tab-button"
+              style={this.state.panelState == 1 ? {background: "var(--button-background)"} : {}}
+            > Bildirimler </button>
+    
+            <button
+              onClick={e => this.setState({ panelState: 2 })}
+              className="tab-button"
+              style={this.state.panelState == 2 ? {background: "var(--button-background)"} : {}}
+            > Yazılar </button>
+          </div>
+        :
+          ""
+        }
 
         {this.state.logined == false ?
           <div style={{paddingTop: "20vh"}}>
@@ -158,7 +175,7 @@ class AdminPanel extends React.Component {
             {this.state.panelState == 2 ? 
               <Posts
                 posts={this.state.posts}
-                goPost={this.goPost}
+                goPost={id => this.goPost(id)}
               />
             : ""}
 
@@ -166,6 +183,7 @@ class AdminPanel extends React.Component {
               <div>
                 <PostForm
                   goBack={() => this.setState({ panelState: 2 })}
+                  postID={this.state.currentPost}
                 />
               </div>
             : ""}
@@ -178,7 +196,7 @@ class AdminPanel extends React.Component {
           color: #000;
           border-radius: 10px;
           background: #fff;
-          box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
+          box-shadow: 0px 10px 16px rgb(0 0 0 / 10%);
           width: 100%;
           max-width: 1000px;
           height: 75vh;
@@ -249,25 +267,6 @@ class AdminPanel extends React.Component {
           background: var(--button-background);
         }
 
-        .head {
-          color: #fff;
-          font-size: 18px;
-          font-weight: bold;
-          text-transform: uppercase;
-          padding: 20px;
-          background: rgb(0 211 128);
-          user-select: none;
-        }
-
-        .panel-tab {
-          width: 100%;
-          height: 72vh;
-          background: #fff;
-          border-radius: 0 0 10px 10px;
-          float: right;
-          overflow: hidden;
-        }
-
         @media (max-width: 700px) {
           html {
             background: #fff;
@@ -276,6 +275,7 @@ class AdminPanel extends React.Component {
           .panel-card {
             width: 100%;
             margin: auto;
+            padding-top: 65px;
             box-shadow: 0 0;
             display: block;
             text-align: center;

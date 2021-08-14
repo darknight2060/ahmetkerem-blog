@@ -168,7 +168,7 @@ class ProfileEdit extends Component {
             color: #000;
             border-radius: 10px;
             background: #fff;
-            box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
+            box-shadow: 0px 10px 16px rgb(0 0 0 / 10%);
             width: 100%;
             max-width: 400px;
             margin: 120px auto 0;
@@ -266,7 +266,7 @@ class ProfileEdit extends Component {
             .card {
               width: 100%;
               margin: auto;
-              padding: 80px 0 30px;
+              padding: 100px 0 30px;
               box-shadow: none;
               display: block;
               text-align: center;

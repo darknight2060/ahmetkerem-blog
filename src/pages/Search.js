@@ -108,7 +108,7 @@ class Search extends Component {
 
             <div className="posts">
               {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
-                <a href={"/post/" + this.searched == true ? post.item.id : post.id}>
+                <a href={"/post/" + (this.searched == true ? post.item.id : post.id)}>
                   <div className="post">
                     <img className="image" src={this.searched == true ? post.item.image : post.image}/>
                     
@@ -138,7 +138,7 @@ class Search extends Component {
           </div>
 
           <style>{`
-            @media (max-width: 900px) {
+            @media (max-width: 700px) {
               nav {
                 width: max-content;
               }

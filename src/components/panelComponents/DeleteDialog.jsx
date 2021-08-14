@@ -1,36 +1,46 @@
 import React, { Component } from 'react';
+import { database } from '../../services/firebase';
 
-class LoginAlert extends Component {
-
-  closeAlert() {
-    document.getElementById("alertOverlay").style.visibility = "hidden";
-    document.getElementById("alertOverlay").style.opacity = "0";
-
-    document.getElementById("alert").style.visibility = "hidden";
-    document.getElementById("alert").style.opacity = "0";
-    document.getElementById("alert").style.transform = "scale(1.2)";
+class DeleteDialog extends Component {
+  constructor(props) {
+    super(props);
+    this.closeDelete = this.closeDelete.bind(this);
+    this.deletePost = this.deletePost.bind(this);
   }
 
-  go() {
-    window.location.href = "/giris";
+  closeDelete(deleted) {
+    if (deleted == true)
+      document.getElementById("panel-post-" + this.props.postID).style.display = "none";
+
+    document.getElementById("deleteOverlay").style.visibility = "hidden";
+    document.getElementById("deleteOverlay").style.opacity = "0";
+
+    document.getElementById("delete").style.visibility = "hidden";
+    document.getElementById("delete").style.opacity = "0";
+    document.getElementById("delete").style.transform = "scale(1.2)";
+  }
+
+  deletePost() {
+    database.ref("posts/" + this.props.postID).remove();
+    this.closeDelete(true);
   }
 
   render() {return (
     <div>
-      <div className="alertOverlay" id="alertOverlay" onClick={this.closeAlert} />
+      <div className="deleteOverlay" id="deleteOverlay" onClick={this.closeDelete} />
 
-      <div className="alert" id="alert">
+      <div className="delete" id="delete">
 
-        <a>:(</a>
-        <p>Bunun için giriş yapman gerekli.</p>
+        <a>Yazıyı Sil?</a>
+        <p>Bu yazıyı silmek istediğine emin misin?</p>
 
-        <button className="red" onClick={this.closeAlert}>Kapat</button>
-        <button className="onay" onClick={this.go}>Giriş Sayfası</button>
+        <button className="red" onClick={this.closeDelete}>Vazgeç</button>
+        <button className="onay" onClick={this.deletePost}>Eminim, sil onu!</button>
 
       </div>
 
       <style>{`
-        .alertOverlay {
+        .deleteOverlay {
           top: 0;
           left: 0;
           background: #000;
@@ -43,39 +53,39 @@ class LoginAlert extends Component {
           transition: .2s;
         }
 
-        .alert {
+        .delete {
           top: 50%;
-          margin-top: -80px;
+          margin-top: -110px;
           left: 50%;
-          margin-left: -150px;
+          margin-left: -175px;
           background: #fff;
-          width: 300px;
+          width: 350px;
           height: 160px;
           opacity: 0;
           z-index: 999;
           position: fixed;
           border-radius: 10px;
           text-align: center;
-          padding: 20px 10px;
+          padding: 30px 10px;
           user-select: none;
           visibility: hidden;
           transform: scale(1.2);
           transition: .2s;
         }
 
-        .alert a {
+        .delete a {
           color: #000;
           font-size: 40px;
           font-weight: bold;
         }
 
-        .alert p {
+        .delete p {
           color: #000;
           font-size: 18px;
           margin-top: 15px;
         }
 
-        .alert button {
+        .delete button {
           margin-top: 5px;
           outline: none;
         }
@@ -116,7 +126,7 @@ class LoginAlert extends Component {
         }
 
         @media (max-width: 623px) {
-          .alert {
+          .delete {
             width: 100%;
             height: 100%;
             left: 0;
@@ -129,4 +139,4 @@ class LoginAlert extends Component {
   )}
 }
 
-export default LoginAlert;
+export default DeleteDialog;

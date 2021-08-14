@@ -6,10 +6,6 @@
   margin: auto;
 }
 
-.postForm p {
-  margin: 0;
-}
-
 .postForm .back {
   width: 44px;
   height: 44px;
@@ -147,16 +143,6 @@
   background: var(--button-hover-background);
 }
 
-@media (max-width: 900px) {
- .postForm .buttons {
-   width: 260px;
-   position: fixed;
-   bottom: 60px;
-   left: 50%;
-   margin-left: -130px;
- }
-}
-
 @media (max-width: 623px) {
   .postForm {
     border-radius: 0;
@@ -164,9 +150,14 @@
     padding-bottom: 50px;
   }
 
+  .postForm .back {
+    margin: 0;
+    padding: 18px 0 0 10px;
+  }
+
   .postForm .title {
     margin: 0px;
-    padding: 20px 0;
+    padding: 70px 0 20px;
   }
 
   .postForm .back {
@@ -192,13 +183,5 @@
   .postForm textarea {
     padding: 10px;
     width: 85%;
-  }
-
-  .postForm .buttons {
-    width: 260px;
-    position: fixed;
-    bottom: 60px;
-    left: 50%;
-    margin-left: -130px;
   }
 }

@@ -143,7 +143,7 @@ class Nav extends React.Component {
               list-style-type: none;
               border-bottom: 5px solid #00a0d9;
               border-bottom: none;
-              box-shadow: 0 3px 16px rgb(0 0 0 / 12%);
+              box-shadow: 0 3px 16px rgb(0 0 0 / 2%);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -231,7 +231,7 @@ class Nav extends React.Component {
               cursor: pointer;
             }
             
-            @media (max-width: 900px) {
+            @media (max-width: 700px) {
               .showMenu {
                 display: block;
               }

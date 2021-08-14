@@ -5,7 +5,7 @@ import '../../css/PostForm.css';
 class PostForm extends Component {
   constructor(state) {
     super(state);
-    this.postID = "001";
+    this.postID = this.props.postID;
     this.state = {
       postTitle: "",
       postContent: "",
@@ -19,7 +19,7 @@ class PostForm extends Component {
   }
 
   componentDidMount() {
-    database.ref("posts/001").get().then(snap => {
+    database.ref("posts/" + this.postID).get().then(snap => {
       if (!snap.exists()) return window.location.pathname = "/panel";
       
       this.setState({
@@ -50,7 +50,7 @@ class PostForm extends Component {
   savePost() {
     this.onFileUpload();
 
-    database.ref("posts/001").update({
+    database.ref("posts/" + this.postID).update({
       title: this.state.postTitle || null,
       content: this.state.postContent || null,
       tags: this.state.tags || null
@@ -94,7 +94,7 @@ class PostForm extends Component {
         className="baslik" 
         maxLength="24" 
         value={this.state.postTitle} 
-        onChange={event => this.setState({postTitle: event.target.value})}
+        onChange={event => this.setState({ postTitle: event.target.value })}
       />
 
       <textarea
@@ -102,7 +102,7 @@ class PostForm extends Component {
         id="area"
         className="icerik" 
         value={this.state.postContent} 
-        onChange={event => this.setState({postContent: event.target.value})} 
+        onChange={event => this.setState({ postContent: event.target.value })} 
       />
 
       <input
@@ -112,7 +112,7 @@ class PostForm extends Component {
         accept="image/*"
         onChange={e => {
           document.getElementById('draft_photo').src = window.URL.createObjectURL(e.target.files[0])
-          this.setState({file: e.target.files[0]})
+          this.setState({ file: e.target.files[0] })
         }}
       />
 
@@ -241,7 +241,8 @@ class PostForm extends Component {
 
         @media (max-width: 623px) {
           .input-tag {
-           border-radius: 0;
+            width: 85%;
+            padding: 10px;
           }
         }
       `}</style>

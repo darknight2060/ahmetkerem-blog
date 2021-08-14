@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 class Statistics extends Component {
   render() {return (
     <div className="panel-tab panel-mid">
-      <div className="head">İstatistikler</div>
-  
       <div style={{display: "flex", justifyContent: "center"}}>
         <div className="count">
           <img src="/images/view.png" />
@@ -19,23 +17,12 @@ class Statistics extends Component {
       
       <style>{`
         .panel-mid {
-          width: 700px;
-          height: 75vh;
+          width: 100%;
+          height: 68vh;
           background: #fff;
-          border-radius: 10px 0 0 10px;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden auto;
-        }
-      
-        .panel-mid .head {
-          color: #fff;
-          font-size: 18px;
-          font-weight: bold;
-          text-transform: uppercase;
-          padding: 20px;
-          background: rgb(0 211 128);
-          user-select: none;
+          border-radius: 0 0 10px 10px;
+          float: right;
+          overflow: hidden;
         }
       
         .panel-mid img {
@@ -65,7 +52,7 @@ class Statistics extends Component {
         @media (max-width: 700px) {
           .panel-mid {
             width: 100%;
-            height: 50vh;
+            height: calc(100vh - 186px);
             margin: auto;
             padding-top: 65px;
             border-radius: 0;

@@ -99,7 +99,7 @@ class Contact extends Component {
             color: #000;
             border-radius: 10px;
             background: #fff;
-            box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
+            box-shadow: 0px 10px 16px rgb(0 0 0 / 10%);
             width: 100%;
             padding: 30px 0 50px;
             text-align: center;

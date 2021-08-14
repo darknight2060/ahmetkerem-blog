@@ -1,21 +1,62 @@
 import React, { Component } from 'react';
+import DeleteDialog from './DeleteDialog';
+import { database } from '../../services/firebase';
+import randomstring from 'randomstring';
 import ms from '../../services/ms';
 
 class Posts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deletePostID: ""
+    }
+  }
+
+  openDeleteDialog(id) {
+    this.setState({ deletePostID: id })
+
+    document.getElementById("deleteOverlay").style.visibility = "visible";
+    document.getElementById("deleteOverlay").style.opacity = ".6";
+
+    document.getElementById("delete").style.visibility = "visible";
+    document.getElementById("delete").style.opacity = "1";
+    document.getElementById("delete").style.transform = "scale(1)";
+  }
+
+  createNewPost() {
+    const newPostID = randomstring.generate({
+      length: 8,
+      charset: "numeric"
+    });
+
+    database.ref("posts/" + newPostID).set({
+      title: "",
+      content: "",
+      date: Date.now(),
+      view: 0
+    })
+  }
+
   render() {return (
     <div className="panel-posts">
-      <div className="head">Yazılar</div>
+      <DeleteDialog postID={this.state.deletePostID} />
+
+      <div className="newPostContainer" onClick={this.createNewPost}>
+        <img src="/images/plus.png" className="plusIcon" />
+        <a className="newPostText">Yeni Bir Yazı Oluştur</a>
+      </div>
+
       <div className="panel-posts-overlay">
         {this.props.posts.map(post => {return (
-          <div className="panel-post">
-            <img className="post-image" src={post.image} />
+          <div className="panel-post" id={"panel-post-" + post.id}>
+            <img className="post-image" src={post.image || "/images/default.jpg"} />
         
             <div style={{textAlign: "left"}}>
               <div className="post-date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>
               <div className="post-content">{post.title}</div>
   
-              <button className="edit-button" onClick={this.props.goPost}>Düzenle</button>
-              <button className="delete-button">Sil</button>
+              <button className="edit-button" onClick={() => this.props.goPost(post.id)}>Düzenle</button>
+              <button className="delete-button" onClick={() => this.openDeleteDialog(post.id)}>Sil</button>
             </div>
   
           </div>
@@ -25,15 +66,35 @@ class Posts extends Component {
       <style>{`
         .panel-posts {
           width: 100%;
-          height: 72vh;
+          height: 68vh;
           background: #fff;
           border-radius: 0 0 10px 10px;
           float: right;
           overflow: hidden;
         }
+
+        .newPostContainer {
+          width: max-content;
+          margin: auto;
+          padding: 15px 0;
+          display: flex;
+        }
+
+        .newPostContainer .plusIcon {
+          width: 22px;
+          height: 22px;
+          padding-right: 5px;
+          cursor: pointer;
+        }
+
+        .newPostText {
+          font-weight: bold;
+          cursor: pointer;
+          user-select: none;
+        }
         
         .panel-posts-overlay {
-          height: calc(100% - 65px);
+          height: 100%;
           overflow: hidden auto;
         }
         
@@ -118,7 +179,7 @@ class Posts extends Component {
         @media (max-width: 700px) {
           .panel-posts {
             width: 100%;
-            height: 50vh;
+            height: calc(100vh - 121px);
             border-radius: 0;
           }
         }

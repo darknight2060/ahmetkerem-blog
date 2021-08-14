@@ -15,9 +15,30 @@ class About extends Component {
             <h1 className="card-title"></h1>
 
             <div className="card-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque sit amet porttitor eget. Neque viverra justo nec ultrices dui sapien. Lorem mollis aliquam ut porttitor leo a diam. Elit ullamcorper dignissim cras tincidunt. Felis imperdiet proin fermentum leo vel orci porta non pulvinar. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Pharetra convallis posuere morbi leo. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Sed velit dignissim sodales ut eu sem integer. Ipsum faucibus vitae aliquet nec ullamcorper sit. Nisl condimentum id venenatis a condimentum vitae sapien. Vel risus commodo viverra maecenas accumsan lacus vel. Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Pellentesque sit amet porttitor eget. Neque viverra justo nec ultrices dui sapien.
+              Lorem mollis aliquam ut porttitor leo a diam. Elit ullamcorper dignissim cras tincidunt.
+              Felis imperdiet proin fermentum leo vel orci porta non pulvinar.
+              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
+              Pharetra convallis posuere morbi leo.
+              Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in.
+              Sed velit dignissim sodales ut eu sem integer.
+              Ipsum faucibus vitae aliquet nec ullamcorper sit.
+              Nisl condimentum id venenatis a condimentum vitae sapien.
+              Vel risus commodo viverra maecenas accumsan lacus vel.
+              Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales.
 
-Id aliquet risus feugiat in ante metus dictum at. Sed turpis tincidunt id aliquet risus feugiat in. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Faucibus in ornare quam viverra orci. Tellus molestie nunc non blandit massa enim nec dui. Faucibus purus in massa tempor nec feugiat nisl. Nisl nisi scelerisque eu ultrices. Turpis cursus in hac habitasse platea dictumst. Sit amet risus nullam eget felis eget nunc. Placerat in egestas erat imperdiet sed euismod nisi porta. Tortor consequat id porta nibh. Auctor urna nunc id cursus metus aliquam. Orci sagittis eu volutpat odio facilisis mauris sit amet massa. Amet volutpat consequat mauris nunc congue nisi vitae.
+              Id aliquet risus feugiat in ante metus dictum at.
+              Sed turpis tincidunt id aliquet risus feugiat in.
+              Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras.
+              Faucibus in ornare quam viverra orci. Tellus molestie nunc non blandit massa enim nec dui.
+              Faucibus purus in massa tempor nec feugiat nisl. Nisl nisi scelerisque eu ultrices.
+              Turpis cursus in hac habitasse platea dictumst. Sit amet risus nullam eget felis eget nunc.
+              Placerat in egestas erat imperdiet sed euismod nisi porta. Tortor consequat id porta nibh.
+              Auctor urna nunc id cursus metus aliquam.
+              Orci sagittis eu volutpat odio facilisis mauris sit amet massa.
+              Amet volutpat consequat mauris nunc congue nisi vitae.
             </div>
           </div>
         </div>
@@ -46,7 +67,7 @@ Id aliquet risus feugiat in ante metus dictum at. Sed turpis tincidunt id alique
             padding: 30px 0 35px;
             border-radius: 10px;
             background: #fff;
-            box-shadow: 0px 10px 16px rgb(0 0 0 / 24%);
+            box-shadow: 0px 10px 16px rgb(0 0 0 / 10%);
             width: 100%;
             text-align: center;
           }

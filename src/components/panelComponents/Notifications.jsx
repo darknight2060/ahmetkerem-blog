@@ -17,9 +17,7 @@ class Notifications extends Component {
   }
 
   render() {return (
-    <div className="panel-tab">
-      <div className="head">Bildirimler</div>
-      
+    <div className="panel-notfs">
       <div className="panel-notfs-overlay">
         {this.props.notifications.map(notf => {return (
           <div className="panel-notf">
@@ -35,11 +33,10 @@ class Notifications extends Component {
 
       <style>{`
         .panel-notfs {
-          width: 300px;
-          height: 75vh;
+          width: 100%;
+          height: 68vh;
           background: #fff;
-          border-left: 2px solid var(--button-background);
-          border-radius: 0 10px 10px 0;
+          border-radius: 0 0 10px 10px;
           float: right;
           overflow: hidden;
         }
@@ -94,8 +91,12 @@ class Notifications extends Component {
         @media (max-width: 700px) {
           .panel-notfs {
             width: 100%;
-            height: 50vh;
+            height: calc(100vh - 121px);
             border-radius: 0;
+          }
+
+          .panel-notfs-overlay {
+            height: 100%;
           }
         }
       `}</style>  

@@ -35,8 +35,12 @@ class Like extends Component {
 
   like() {
     if (!auth.currentUser) {
-             document.getElementById("alert").style.display = "block";
-      return document.getElementById("alertOverlay").style.display = "block";
+      document.getElementById("alertOverlay").style.visibility = "visible";
+      document.getElementById("alertOverlay").style.opacity = ".6";
+  
+      document.getElementById("alert").style.visibility = "visible";
+      document.getElementById("alert").style.opacity = "1";
+      return document.getElementById("alert").style.transform = "scale(1)";
     }
 
     if (this.state.liked == true) {
