@@ -78,7 +78,9 @@ class Home extends Component {
         <div className="main2">
           <div className="searchContainer">
             <button onClick={this.search} className="searchIt" style={{background: "none"}}>
-              <img src="/images/search.png" style={{width: "32px", height: "32px"}} />
+              <img src="/images/search.png" 
+                style={{width: "32px", height: "32px", padding: "8px", background: "#fff", borderRadius: "100%"}}
+              />
             </button>
           </div>
 
@@ -88,7 +90,7 @@ class Home extends Component {
               
               <img
                 className="image"
-                src="/images/whoami.png"
+                src="/images/whoami.jpg"
                 style={{objectFit: "contain", background: "#fff"}}
               />
               

@@ -42,6 +42,7 @@ class NotFoundPage extends React.Component {
             .des-link {
               color: var(--button-background);
               font-size: 20px;
+              transition: .1s;
             }
 
             .des-link:hover {
@@ -57,7 +58,21 @@ class NotFoundPage extends React.Component {
 
             @media (max-width: 1200px) {
               .div {
-                margin: 100px auto;
+                margin: 0;
+                padding: 150px 20px 0;
+              }
+
+              .div .title {
+                font-size: 30px;
+              }
+              
+              .des {
+                font-size: 14px;
+              }
+
+              .des-link {
+                font-size: 14px;
+                font-weight: bold;
               }
               
               footer {

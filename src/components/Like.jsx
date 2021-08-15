@@ -89,6 +89,8 @@ class Like extends Component {
           height: auto;
           text-align: left;
           background-size: cover;
+          display: flex;
+          align-items: center;
         }
         
         .likeImageContainer {

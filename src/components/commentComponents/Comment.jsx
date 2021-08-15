@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
 class Comment extends Component {
   constructor(props) {

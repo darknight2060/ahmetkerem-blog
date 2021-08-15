@@ -10,9 +10,13 @@ class About extends Component {
 
         <div className='main'>
           <div className="card">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/49c16a38805735.57701dcdd452c.gif" alt="Profil Fotoğrafı" className='card-image' />
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/49c16a38805735.57701dcdd452c.gif"
+              alt="Profil Fotoğrafı"
+              className='card-image' 
+            />
 
-            <h1 className="card-title"></h1>
+            <h1 className="card-title">Ben Kimim?</h1>
 
             <div className="card-content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -75,23 +79,22 @@ class About extends Component {
           .card-image {
             width: 200px;
             height: 200px;
-            padding: 0px 20px;
+            padding: 0px 60px 0 0;
             border-radius: 100%;
             object-fit: cover;
             float: right;
           }
     
           .card-title {
-            margin: 30px auto 35px;
+            margin: 68px auto 68px;
             text-align: center;
             font-size: 48px;
             font-weight: normal;
-            display: none;
           }
 
           .card-content {
             min-height: 200px;
-            padding: 0 30px;
+            padding: 15px 30px 10px;
             text-align: justify;
           }
     
@@ -117,11 +120,17 @@ class About extends Component {
             }
 
             .card-image {
+              padding: 0;
               float: unset;
+            }
+
+            .card-title {
+              margin: 0;
             }
 
             .card-content {
               margin-top: 25px;
+              padding: 0 30px 0;
             }
 
             footer {

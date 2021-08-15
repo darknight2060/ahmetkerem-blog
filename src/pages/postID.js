@@ -6,7 +6,8 @@ import ms from '../services/ms';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 import Like from "../components/Like";
-import Comments from '../components/Comments';
+import Comments from '../components/commentComponents/Comments';
+import Share from '../components/Share';
 
 class PostID extends Component {
   constructor(props) {
@@ -84,6 +85,8 @@ class PostID extends Component {
                 </div>
 
                 <Like />
+
+                <Share />
               </div>
             :
               ""

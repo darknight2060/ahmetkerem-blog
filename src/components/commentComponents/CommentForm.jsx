@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 import Skeleton from "react-loading-skeleton";
 
 class CommentForm extends Component {

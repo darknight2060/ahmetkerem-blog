@@ -1,6 +1,5 @@
 # TO-DO
-- Post Paylaşma
-- Hakkında sayfası için yeni bir tasarım
+- ?
 
 # Proje
 - Projeyi Bitir

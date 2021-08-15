@@ -91,10 +91,6 @@ class AdminPanel extends React.Component {
       this.setState({ posts: previousPosts });
       this.getCount(snap.key);
     })
-
-    window.addEventListener("keypress", e => {
-      if (e.key == "a") this.setState({ logined: true });
-    })
   }
 
   getCount(postID) {

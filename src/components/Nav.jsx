@@ -319,7 +319,7 @@ class Nav extends React.Component {
 
               .loginOrRegister {
                 position: absolute;
-                top: 15px;
+                top: 8px;
                 right: 0px;
               }
             }

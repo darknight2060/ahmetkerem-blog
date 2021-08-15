@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { database, storage } from '../../services/firebase';
+import EasyMDE from 'easymde';
 import '../../css/PostForm.css';
 
 class PostForm extends Component {
@@ -29,6 +30,8 @@ class PostForm extends Component {
         tags: snap.val().tags || [],
       })
     })
+
+    var easyMDE = new EasyMDE({element: document.getElementById('my-text-area')});
   }
 
   onFileUpload = async () => {
@@ -103,7 +106,12 @@ class PostForm extends Component {
         className="icerik" 
         value={this.state.postContent} 
         onChange={event => this.setState({ postContent: event.target.value })} 
+        style={{display: "none"}}
       />
+
+<textarea id="my-text-area"></textarea>
+
+
 
       <input
         id="imeyç" 

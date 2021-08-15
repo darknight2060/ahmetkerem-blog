@@ -170,9 +170,13 @@ class SignUp extends React.Component {
           @media (max-width: 623px) {
             .ana {
               position: fixed;
-              padding: 50px 0px;
+              padding: 100px 0px;
               margin: 0;
               height: 100%;
+            }
+
+            input {
+              width: 80%;
             }
           }
         `}</style>

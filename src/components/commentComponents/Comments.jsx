@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import Comment from '../components/Comment';
-import CommentForm from "../components/CommentForm";
-import { database } from '../services/firebase';
-import Skeleton from "react-loading-skeleton";
+import Comment from './Comment';
+import CommentForm from "./CommentForm";
+import { database } from '../../services/firebase';
 import LoadingComments from './LoadingComments';
 
 class Comments extends Component {
