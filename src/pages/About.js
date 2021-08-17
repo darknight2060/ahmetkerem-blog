@@ -1,9 +1,23 @@
 import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
+import Markdown from 'react-markdown';
+
+const AboutFile = require("../about.md");
 
 class About extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      response: ""
+    }
+  }
+
   render() {
+    fetch(AboutFile) 
+      .then(response => response.text())
+      .then(result => this.setState({ response: result }));
+
     return (
       <div className="container">
         <Nav/>
@@ -11,7 +25,7 @@ class About extends Component {
         <div className='main'>
           <div className="card">
             <img
-              src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/49c16a38805735.57701dcdd452c.gif"
+              src="/images/about.jpg"
               alt="Profil Fotoğrafı"
               className='card-image' 
             />
@@ -19,30 +33,7 @@ class About extends Component {
             <h1 className="card-title">Ben Kimim?</h1>
 
             <div className="card-content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Pellentesque sit amet porttitor eget. Neque viverra justo nec ultrices dui sapien.
-              Lorem mollis aliquam ut porttitor leo a diam. Elit ullamcorper dignissim cras tincidunt.
-              Felis imperdiet proin fermentum leo vel orci porta non pulvinar.
-              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-              Pharetra convallis posuere morbi leo.
-              Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in.
-              Sed velit dignissim sodales ut eu sem integer.
-              Ipsum faucibus vitae aliquet nec ullamcorper sit.
-              Nisl condimentum id venenatis a condimentum vitae sapien.
-              Vel risus commodo viverra maecenas accumsan lacus vel.
-              Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales.
-
-              Id aliquet risus feugiat in ante metus dictum at.
-              Sed turpis tincidunt id aliquet risus feugiat in.
-              Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras.
-              Faucibus in ornare quam viverra orci. Tellus molestie nunc non blandit massa enim nec dui.
-              Faucibus purus in massa tempor nec feugiat nisl. Nisl nisi scelerisque eu ultrices.
-              Turpis cursus in hac habitasse platea dictumst. Sit amet risus nullam eget felis eget nunc.
-              Placerat in egestas erat imperdiet sed euismod nisi porta. Tortor consequat id porta nibh.
-              Auctor urna nunc id cursus metus aliquam.
-              Orci sagittis eu volutpat odio facilisis mauris sit amet massa.
-              Amet volutpat consequat mauris nunc congue nisi vitae.
+              <Markdown>{this.state.response}</Markdown>
             </div>
           </div>
         </div>
@@ -79,28 +70,31 @@ class About extends Component {
           .card-image {
             width: 200px;
             height: 200px;
-            padding: 0px 60px 0 0;
+            margin: 0px 60px 0 0;
             border-radius: 100%;
             object-fit: cover;
             float: right;
           }
     
           .card-title {
-            margin: 68px auto 68px;
+            margin: 68px auto 35px;
             text-align: center;
             font-size: 48px;
-            font-weight: normal;
           }
 
           .card-content {
             min-height: 200px;
             padding: 15px 30px 10px;
-            text-align: justify;
+            text-align: left;
           }
-    
-          .card-date {
-            padding: 30px;
-            text-align: right;
+          
+          .card a:hover {
+            color: var(--button-hover-background);
+          }
+
+          .card h1 {
+            font-weight: normal;
+            text-align: center;
           }
     
           @media (max-width: 700px) {
@@ -120,7 +114,7 @@ class About extends Component {
             }
 
             .card-image {
-              padding: 0;
+              margin: 0;
               float: unset;
             }
 
@@ -131,6 +125,10 @@ class About extends Component {
             .card-content {
               margin-top: 25px;
               padding: 0 30px 0;
+            }
+
+            ul {
+              padding-left: 15px;
             }
 
             footer {

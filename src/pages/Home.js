@@ -97,19 +97,11 @@ class Home extends Component {
               <div style={{padding: "0 16px"}}>
                 <h2 className="title">Ben Kimim?</h2>
                 <div className="description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque sit amet porttitor eget. Neque viverra justo nec ultrices dui sapien.
-                  Lorem mollis aliquam ut porttitor leo a diam. Elit ullamcorper dignissim cras tincidunt.
-                  Felis imperdiet proin fermentum leo vel orci porta non pulvinar.
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-                  Pharetra convallis posuere morbi leo.
-                  Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in.
-                  Sed velit dignissim sodales ut eu sem integer.
-                  Ipsum faucibus vitae aliquet nec ullamcorper sit.
-                  Nisl condimentum id venenatis a condimentum vitae sapien.
-                  Vel risus commodo viverra maecenas accumsan lacus vel.
-                  Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales.
+                  Merhaba! Ben Ahmet Kerem, 15 yaşındayım.
+                  HTML, CSS ve JavaScript kullanarak websiteler yapıyorum.
+                  Discord Bot kodlama hakkında da bilgim var.
+                  2 yıldan fazla zamandır yazılıma ilgim var ve kendi projelerimi kodluyorum.
+                  Ekstra olarak Grafik Tasarım, Fotoğrafçılık, Tenis (Kort Tenisi) gibi hobilerim de var. 
                 </div>
 
                 <a href="/hakkinda">

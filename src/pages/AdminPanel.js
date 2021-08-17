@@ -121,7 +121,7 @@ class AdminPanel extends React.Component {
         style={this.state.panelState == 3 ? {height: "100%", marginBottom: "40px"} : {}}>
           
         {this.state.logined == true ?
-          <div style={{borderBottom: "5px solid var(--button-background)"}}>
+          <div style={{borderBottom: "2px solid var(--button-background)"}}>
             <button 
               onClick={e => this.setState({ panelState: 0 })}
               className="tab-button"

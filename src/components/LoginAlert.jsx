@@ -24,8 +24,8 @@ class LoginAlert extends Component {
         <a>:(</a>
         <p>Bunun için giriş yapman gerekli.</p>
 
-        <button className="red" onClick={this.closeAlert}>Kapat</button>
-        <button className="onay" onClick={this.go}>Giriş Sayfası</button>
+        <button className="nope" onClick={this.closeAlert}>Kapat</button>
+        <button className="yeah" onClick={this.go}>Giriş Sayfası</button>
 
       </div>
 
@@ -80,7 +80,7 @@ class LoginAlert extends Component {
           outline: none;
         }
 
-        .onay {
+        .yeah {
           width: 125px;
           margin: 0 8px 0;
           padding: 10px;
@@ -93,11 +93,11 @@ class LoginAlert extends Component {
           transition: .1s;
         }
 
-        .onay:hover {
+        .yeah:hover {
           background: var(--button-hover-background);
         }
 
-        .red {
+        .nope {
           width: 125px;
           margin: 0 8px 0;
           padding: 10px;
@@ -110,7 +110,7 @@ class LoginAlert extends Component {
           transition: .1s;
         }
 
-        .red:hover {
+        .nope:hover {
           color: var(--button-hover-background);
           border-color: var(--button-hover-background);
         }

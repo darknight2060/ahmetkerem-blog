@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Statistics extends Component {
   render() {return (
-    <div className="panel-tab panel-mid">
+    <div className="panel-mid">
       <div style={{display: "flex", justifyContent: "center"}}>
         <div className="count">
           <img src="/images/view.png" />

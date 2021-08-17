@@ -34,8 +34,8 @@ class DeleteDialog extends Component {
         <a>Yazıyı Sil?</a>
         <p>Bu yazıyı silmek istediğine emin misin?</p>
 
-        <button className="red" onClick={this.closeDelete}>Vazgeç</button>
-        <button className="onay" onClick={this.deletePost}>Eminim, sil onu!</button>
+        <button className="nope" onClick={this.closeDelete}>Vazgeç</button>
+        <button className="yeah" onClick={this.deletePost}>Eminim, sil onu!</button>
 
       </div>
 
@@ -90,7 +90,7 @@ class DeleteDialog extends Component {
           outline: none;
         }
 
-        .onay {
+        .yeah {
           width: 125px;
           margin: 0 8px 0;
           padding: 10px;
@@ -103,11 +103,11 @@ class DeleteDialog extends Component {
           transition: .1s;
         }
 
-        .onay:hover {
+        .yeah:hover {
           background: var(--button-hover-background);
         }
 
-        .red {
+        .nope {
           width: 125px;
           margin: 0 8px 0;
           padding: 10px;
@@ -120,7 +120,7 @@ class DeleteDialog extends Component {
           transition: .1s;
         }
 
-        .red:hover {
+        .nope:hover {
           color: var(--button-hover-background);
           border-color: var(--button-hover-background);
         }

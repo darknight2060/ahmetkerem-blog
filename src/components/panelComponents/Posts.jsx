@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DeleteDialog from './DeleteDialog';
-import { database } from '../../services/firebase';
-import randomstring from 'randomstring';
+import NewPostDialog from './NewPostDialog';
 import ms from '../../services/ms';
 
 class Posts extends Component {
@@ -10,6 +9,8 @@ class Posts extends Component {
     this.state = {
       deletePostID: ""
     }
+
+    this.createNewPost = this.createNewPost.bind(this);
   }
 
   openDeleteDialog(id) {
@@ -24,22 +25,19 @@ class Posts extends Component {
   }
 
   createNewPost() {
-    const newPostID = randomstring.generate({
-      length: 8,
-      charset: "numeric"
-    });
+    document.getElementById("newPostOverlay").style.visibility = "visible";
+    document.getElementById("newPostOverlay").style.opacity = ".6";
 
-    database.ref("posts/" + newPostID).set({
-      title: "",
-      content: "",
-      date: Date.now(),
-      view: 0
-    })
+    document.getElementById("newPost").style.visibility = "visible";
+    document.getElementById("newPost").style.opacity = "1";
+    document.getElementById("newPost").style.transform = "scale(1)";
   }
 
   render() {return (
     <div className="panel-posts">
       <DeleteDialog postID={this.state.deletePostID} />
+
+      <NewPostDialog />
 
       <div className="newPostContainer" onClick={this.createNewPost}>
         <img src="/images/plus.png" className="plusIcon" />
@@ -94,7 +92,7 @@ class Posts extends Component {
         }
         
         .panel-posts-overlay {
-          height: 100%;
+          height: calc(100% - 52px);
           overflow: hidden auto;
         }
         

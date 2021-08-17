@@ -94,11 +94,11 @@
   border-radius: 10px;
 }
 
-.postForm .resim {
+.postForm .image {
   display: none;
 }
 
-.postForm .resim2 {
+.postForm .image2 {
   background: var(--button-background);
   font-size: 15px;
   display: block;
@@ -108,7 +108,7 @@
   border-radius: 10px;
 }
 
-.postForm .resim2 img {
+.postForm .image2 img {
   background: #2f2d33;
   font-size: 15px;
   display: block;
@@ -120,7 +120,7 @@
   transition: 0.1s;
 }
 
-.postForm .resim2 .upload {
+.postForm .image2 .upload {
   color: #fff;
   font-weight: bold;
   padding: 5px 0;
@@ -172,11 +172,11 @@
     padding: 10px;
   }
 
-  .postForm .resim2 img {
+  .postForm .image2 img {
     border-radius: 0;
   }
 
-  .postForm .resim2 {
+  .postForm .image2 {
     border-radius: 0;
   }
 

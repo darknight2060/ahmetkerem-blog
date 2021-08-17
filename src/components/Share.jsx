@@ -20,7 +20,7 @@ import {
 class Share extends Component {
   constructor(props) {
     super(props);
-    this.shareLink = "www.google.com";
+    this.shareLink = window.location.href;
   }
 
   render() {return (
