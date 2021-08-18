@@ -1,11 +1,11 @@
 Merhaba! Ben Ahmet Kerem, 15 yaşındayım.
 HTML, CSS ve JavaScript kullanarak websiteler yapıyorum.
 Discord Bot kodlama hakkında da bilgim var.
-[Şuradan](https://ahmetkerem.herokuapp.com/) kişisel WebSitem'e gidebilirsiniz.  
+[Buradan](https://ahmetkerem.herokuapp.com/) kişisel WebSitem'e gidebilirsiniz.  
 2 yıldan fazla zamandır yazılıma ilgim var ve kendi projelerimi kodluyorum.
 Ekstra olarak Grafik Tasarım, Fotoğrafçılık, Tenis (Kort Tenisi) gibi hobilerim de var. 
-
 Pek dizi-film izlemem, uğraşlarım esnasında bolca müzik dinlerim. En sevdiğim müzik tarzı "Metal".
+Kendimi geliştirmek için çok çalışıyorum :D
 
 # Site Hakkında
 

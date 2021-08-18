@@ -60,6 +60,16 @@ class Home extends Component {
     return likes;
   }
 
+  getCommentCount(postID) {
+    var likes = 0;
+
+    database.ref("posts/" + postID + "/comments").on("child_added", () => {
+      likes = likes + 1;
+    })
+
+    return likes;
+  }
+
   closeHomeInfo() {
     localStorage.setItem("homeInfo", true);
     document.getElementById("homeInfo").style.display = "none";
@@ -120,14 +130,21 @@ class Home extends Component {
                     <div className="description">{post.content}</div>
               
                     <div style={{paddingTop: "10px", display: "flex", alignItems: "center"}}>
-                      <div className="views">
-                        <img src="/images/view.png" className="viewImage" />
-                        {post.view}
-                      </div>
-
-                      <div className="likes">
-                        <img src="/images/liked.png" className="likeImage" />
-                        {this.getLikeCount(post.id)}
+                      <div style={{width: "50%", display: "flex", overflow: "hidden"}}>
+                        <div className="views">
+                          <img src="/images/view.png" className="viewImage" />
+                          {post.view}
+                        </div>
+  
+                        <div className="likes">
+                          <img src="/images/liked.png" className="likeImage" />
+                          {this.getLikeCount(post.id)}
+                        </div>
+  
+                        <div className="likes">
+                          <img src="/images/comment.png" className="likeImage" />
+                          {this.getCommentCount(post.id)}
+                        </div>
                       </div>
 
                       <div className="date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>

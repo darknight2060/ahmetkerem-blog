@@ -21,7 +21,8 @@ class AdminPanel extends React.Component {
       currentPost: "",
 
       viewCount: 0,
-      likeCount: 0
+      likeCount: 0,
+      commentCount: 0
     }
 
     this.goPost = this.goPost.bind(this);
@@ -91,13 +92,15 @@ class AdminPanel extends React.Component {
       this.setState({ posts: previousPosts });
       this.getCount(snap.key);
     })
-    
-    this.setState({ logined: true})
   }
 
   getCount(postID) {
     database.ref("posts/" + postID + "/likes").on("child_added", () => {
       this.setState({ likeCount: this.state.likeCount + 1 });
+    })
+
+    database.ref("posts/" + postID + "/comments").on("child_added", () => {
+      this.setState({ commentCount: this.state.commentCount + 1 });
     })
 
     database.ref("posts/" + postID).on("value", snap => {
@@ -160,6 +163,7 @@ class AdminPanel extends React.Component {
               <Statistics
                 viewCount={this.state.viewCount} 
                 likeCount={this.state.likeCount}
+                commentCount={this.state.commentCount}
               />
             : ""}
 

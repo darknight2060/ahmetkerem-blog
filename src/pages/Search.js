@@ -62,6 +62,8 @@ class Search extends Component {
     window.addEventListener("keypress", (e) => {
       if (e.keyCode == "13") document.getElementById("searchIt").click();
     })
+
+    document.getElementById("searchInput").value = this.searchText;
   }
 
   getLikeCount(postID) {

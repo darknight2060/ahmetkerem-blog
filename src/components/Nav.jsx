@@ -57,6 +57,10 @@ class Nav extends React.Component {
             <li>
               <a href="/iletisim">İletişim</a>
             </li>
+            <div className="section" />
+            <li>
+              <a href="/panel">Panel</a>
+            </li>
               <div className="section" />
             {localStorage.getItem("currentUser") ? (
               <a href="/profil">
