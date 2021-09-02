@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { database } from '../services/firebase';
+import { SocialIcon } from 'react-social-icons';
 import Nav from "../components/Nav";
 import Footer from '../components/Footer';
 import emailjs, { init } from 'emailjs-com';
@@ -46,17 +47,20 @@ class Contact extends Component {
             <h2 className="contact-title">Sosyal Medya</h2>
 
             <div className="social-links">
-              <a href="https://www.facebook.com/ahmetkerem.akyel.3/" target="blank">
-                <div className="social" style={{backgroundColor: "#1278f3"}}>Facebook</div>
-              </a>
-  
-              <a href="https://www.instagram.com/ahmetkeremakyel/" target="blank">
-                <div className="social" style={{background: "linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)"}}>Instagram</div>
-              </a>
-  
-              <a href="https://twitter.com/ahmetkeremakyel" target="blank">
-                <div className="social" style={{backgroundColor: "#00a2f5"}}>Twitter</div>
-              </a>
+            <SocialIcon
+            url="https://www.facebook.com/ahmetkerem.akyel.3/"
+            style={{width: "35px", height: "35px"}}
+          />
+
+          <SocialIcon
+            url="https://www.instagram.com/ahmetkeremakyel/"
+            style={{width: "35px", height: "35px"}}
+          />
+
+          <SocialIcon
+            url="https://twitter.com/ahmetkeremakyel"
+            style={{width: "35px", height: "35px"}}
+          />
             </div>
 
             <div>
@@ -67,11 +71,37 @@ class Contact extends Component {
             <h2 className="contact-title-second">E-Posta Gönder</h2>
 
             <form id="contact-form">
-              <input type="text" className="contact-input" placeholder="İsim" name="from_name" autocomplete="off" required />
-              <input type="text" className="contact-input" placeholder="Konu" name="from_subject" autocomplete="off" />
-              <textarea type="text" className="contact-textarea" placeholder="İçerik" name="message" autocomplete="off" required />
+              <input
+                type="text"
+                className="contact-input"
+                placeholder="İsim (Zorunlu)"
+                name="from_name"
+                autocomplete="off"
+                required
+              />
+
+              <input
+                type="text"
+                className="contact-input"
+                placeholder="Konu (İsteğe Bağlı)"
+                name="from_subject"
+                autocomplete="off"
+              />
+
+              <textarea
+                type="text"
+                className="contact-textarea"
+                placeholder="İçerik (Zorunlu)"
+                name="message"
+                autocomplete="off"
+                required
+              />
   
-              <input type="submit" value="Gönder" className="contact-button" />
+              <input
+                type="submit"
+                value="Gönder"
+                className="contact-button"
+              />
             </form>
           </div>
         </div>
@@ -123,22 +153,16 @@ class Contact extends Component {
             user-select: none;
           }
 
-          .contact .social {
-            width: 100px;
-            margin: 8px;
-            padding: 10px;
-            color: #fff;
-            border-radius: 5px;
-            display: inline-block;
-            transition: .1s;
+          .contact a.social-icon {
+            margin-right: 10px;
           }
-
-          .contact .social:hover {
-            box-shadow: 0 5px 10px #ccc;
+          
+          .contact a.social-icon:hover {
+            filter: brightness(0.8);
           }
-
-          .contact .social:active {
-            transform: scale(.95);
+          
+          .contact a.social-icon:active {
+            filter: brightness(0.6);
           }
 
           .contact .or {
@@ -171,12 +195,13 @@ class Contact extends Component {
           }
 
           .contact-input:focus {
-            background: rgb(0 0 0 / 10%);
-            transform: scale(1.05);
+            background: rgba(0, 0, 0, .04);
+            box-shadow: inset 0 0 0 2px var(--button-background);
           }
 
           .contact-textarea {
             width: 300px;
+            height: 150px;
             border: 0;
             margin: 15px auto 0;
             padding: 12px;
@@ -191,8 +216,8 @@ class Contact extends Component {
           }
 
           .contact-textarea:focus {
-            background: rgb(0 0 0 / 10%);
-            transform: scale(1.05);
+            background: rgba(0, 0, 0, .04);
+            box-shadow: inset 0 0 0 2px var(--button-background);
           }
 
           .contact-button {
@@ -206,15 +231,15 @@ class Contact extends Component {
             font-size: 16px;
             outline: none;
             transition: .1s;
+            cursor: pointer;
           }
 
           .contact-button:hover {
             background: var(--button-hover-background);
-            cursor: pointer;
           }
 
           .contact-button:active {
-            transform: scale(.95);
+            background: var(--button-active-background);
           }
     
           @media (max-width: 700px) {

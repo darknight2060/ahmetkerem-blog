@@ -79,7 +79,7 @@ class Nav extends React.Component {
                     {this.state.user.userName ?
                       <img
                         id="nav-pp"
-                        src={this.state.user.userImage || "/images/example.jpg"}
+                        src={this.state.user.userImage || "/images/default-user.png"}
                       />
                     :
                       <Skeleton style={{
@@ -130,6 +130,25 @@ class Nav extends React.Component {
             .nav-image-container {
               padding: 10px 20px;
               display: flex;
+              transition: .1s;
+            }
+
+            .nav-image-container:hover {
+              animation: fiyuw ease-out 1s;
+            }
+
+            @keyframes fiyuw {       
+              0% {
+                opacity: 1;
+              }
+
+              50% {
+                opacity: 0.2;
+              }
+
+              100% {
+                opacity: 1;
+              }
             }
   
             .nav-image {
@@ -165,7 +184,11 @@ class Nav extends React.Component {
             }
 
             nav ul li:hover {
-              background: rgb(0 0 0 / 12%);
+              background: rgb(0 0 0 / 8%);
+            }
+
+            nav ul li:active {
+              background: rgb(0 0 0 / 15%);
             }
             
             nav ul li a {
@@ -185,6 +208,10 @@ class Nav extends React.Component {
             }
 
             nav .profile-div:hover {
+              background: rgb(0 0 0 / 8%);
+            }
+
+            nav .profile-div:active {
               background: rgb(0 0 0 / 12%);
             }
 
@@ -214,6 +241,10 @@ class Nav extends React.Component {
 
             nav .loginOrRegister a:hover {
               color: var(--button-hover-background);
+            }
+
+            nav .loginOrRegister a:active {
+              color: var(--button-active-background);
             }
 
             nav .loginOrRegister .or {
@@ -250,10 +281,6 @@ class Nav extends React.Component {
               }
 
               .nav-image-container {
-                top: 15px;
-                right: 15px;
-                position: absolute;
-                padding: 0;
                 display: none;
               }
 

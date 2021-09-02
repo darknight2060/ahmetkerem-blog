@@ -66,7 +66,6 @@ class Posts extends Component {
           width: 100%;
           height: 68vh;
           background: #fff;
-          border-radius: 0 0 10px 10px;
           float: right;
           overflow: hidden;
         }
@@ -76,18 +75,26 @@ class Posts extends Component {
           margin: auto;
           padding: 15px 0;
           display: flex;
+          cursor: pointer;
+          transition: .1s;
+        }
+
+        .newPostContainer:hover, a .plusIcon {
+          filter: brightness(0.9);
+        }
+
+        .newPostContainer:active, a .plusIcon {
+          filter: brightness(0.7);
         }
 
         .newPostContainer .plusIcon {
           width: 22px;
           height: 22px;
           padding-right: 5px;
-          cursor: pointer;
         }
 
         .newPostText {
           font-weight: bold;
-          cursor: pointer;
           user-select: none;
         }
         
@@ -139,8 +146,8 @@ class Posts extends Component {
         }
 
         .panel-post .post-image {
-          width: 40px;
-          height: 40px;
+          width: 60px;
+          height: 60px;
           margin: auto 15px auto 0;
           background: #000;
           border-radius: 5px;
@@ -152,7 +159,7 @@ class Posts extends Component {
           color: #fff;
           background: var(--button-background);
           border: 0;
-          border-radius: 10px;
+          border-radius: 5px;
           transition: .1s;
         }
 
@@ -160,18 +167,26 @@ class Posts extends Component {
           background: var(--button-hover-background);
         }
 
+        .panel-post .edit-button:active {
+          background: var(--button-active-background);
+        }
+
         .panel-post .delete-button {
           margin: 10px 5px 0 0;
           padding: 5px 10px;
           color: #fff;
-          background: #ed1c1c;
+          background: var(--cancel-button-background);
           border: 0;
-          border-radius: 10px;
+          border-radius: 5px;
           transition: .1s;
         }
 
         .panel-post .delete-button:hover {
-          background: #cc1818;
+          background: var(--cancel-hover-background);
+        }
+        
+        .panel-post .delete-button:active {
+          background: var(--cancel-active-background);
         }
       
         @media (max-width: 700px) {
@@ -179,6 +194,10 @@ class Posts extends Component {
             width: 100%;
             height: calc(100vh - 121px);
             border-radius: 0;
+          }
+
+          .panel-post:hover {
+            background: initial;
           }
         }
       `}</style>

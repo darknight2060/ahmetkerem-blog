@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { database } from '../services/firebase';
 import ms from '../services/ms';
 import Nav from './../components/Nav';
+import Footer from './../components/Footer';
 import '../css/App.css';
 import '../css/Home.css';
 
@@ -44,9 +45,12 @@ class Home extends Component {
     })
 
     window.matchMedia("(max-width: 900px)").addListener(() => {
+      if (localStorage.getItem("homeInfo")) return;
+
       if (window.matchMedia("(max-width: 900px)").matches == true)
         document.getElementById("homeInfo").style.display = "block";
-      else document.getElementById("homeInfo").style.display = "inline-block";
+      else
+        document.getElementById("homeInfo").style.display = "inline-block";
     })
   }
 
@@ -75,10 +79,6 @@ class Home extends Component {
     document.getElementById("homeInfo").style.display = "none";
   }
 
-  search() {
-    window.location.href = "/ara";
-  }
-
   render() {return (
     <div>
       <Nav/>
@@ -87,10 +87,10 @@ class Home extends Component {
 
         <div className="main2">
           <div className="searchContainer">
-            <button onClick={this.search} className="searchIt" style={{background: "none"}}>
-              <img src="/images/search.png" 
-                style={{width: "32px", height: "32px", padding: "8px", background: "#fff", borderRadius: "100%"}}
-              />
+            <h1 className="searchTitle" style={{margin: "0", marginRight: "auto"}}>Yazılar</h1>
+
+            <button onClick={() => window.location.href = "/ara"} className="searchIt" style={{background: "none"}}>
+              <img src="/images/search.png" />
             </button>
           </div>
 
@@ -98,11 +98,13 @@ class Home extends Component {
             <div className="post" id="homeInfo" style={{display: "none"}}>
               <div className="closeInfo" onClick={this.closeHomeInfo}>&#x2715;</div>
               
-              <img
-                className="image"
-                src="/images/whoami.jpg"
-                style={{objectFit: "contain", background: "#fff"}}
-              />
+              <div className="image-div">
+                <img
+                  className="image info-image"
+                  src="/images/whoami.jpg"
+                  style={{objectFit: "contain", background: "#fff"}}
+                />
+              </div>
               
               <div style={{padding: "0 16px"}}>
                 <h2 className="title">Ben Kimim?</h2>
@@ -123,7 +125,14 @@ class Home extends Component {
             {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
               <a href={"/post/"+post.id}>
                 <div className="post">
-                  <img className="image" src={post.image}/>
+                  <div className="image-div">
+                    <div className="image" style={{background: `url(${post.image}) 0 0 / cover`}}>
+                      <div className="readmore">
+                        Devamını Oku 
+                        <div style={{fontFamily: "customFont", marginLeft: "5px"}}> {">"}</div>
+                      </div>
+                    </div>
+                  </div>
                   
                   <div style={{padding: "0 16px"}}>
                     <h2 className="title">{post.title}</h2>
@@ -155,17 +164,38 @@ class Home extends Component {
             )}) : <img id="loadingMini" src="/images/favicon.png" style={{top: "200px"}} />}
           </div>
 
-        </div>
-
-        <style>{`
-          @media (max-width: 700px) {
-            nav {
-              width: max-content;
-            }
-          }
-        `}</style>
-        
+        </div>        
       </div>
+
+      <div style={this.state.posts.length > 0 ? {} : {display: "none"}}>
+        <Footer />
+      </div>
+
+      <style>{`
+        html {
+          background: #fff;
+        }
+        
+        .main {
+          background: #eeeeef;
+          padding-top: 100px;
+        }
+
+        footer {
+          margin: 0;
+        }
+
+        @media (max-width: 700px) {
+          nav {
+            width: max-content;
+          }
+
+          .main {
+            padding: 0;
+            padding-bottom: 10px;
+          }
+        }
+      `}</style>
     </div>
   )}
 };

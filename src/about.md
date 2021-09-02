@@ -24,6 +24,7 @@ Kendimi geliştirmek için çok çalışıyorum :D
 - [React-Loading-Skeleton](https://tr.reactjs.org)
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [React-Share](https://www.npmjs.com/package/react-share)
+- [React-Social-Icons](https://www.npmjs.com/package/react-social-icons)
 
 ### Kaynak Kodu
 Bu bir açık kaynak proje, projenin kaynak koduna [buradan](https://github.com/Akerem17/ahmetkerem-blog) ulaşabilirsin!

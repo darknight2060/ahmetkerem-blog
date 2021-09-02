@@ -66,7 +66,7 @@ class Profile extends React.Component {
           {this.state.user.userEmail}
         </div>
 
-        <div style={{margin: "20px 0 0", display: "flex", justifyContent: "center"}}>
+        <div className="buttons" style={{margin: "20px 0 0", display: "flex", justifyContent: "center"}}>
           <div className="button-edit" onClick={() => window.location.href = "/profil/duzenle"}>
             Düzenle
           </div>
@@ -78,6 +78,10 @@ class Profile extends React.Component {
       </div>
 
       <style>{`
+        nav {
+          box-shadow: none;
+        }
+
         .card {
           color: #000;
           border-radius: 10px;
@@ -106,6 +110,8 @@ class Profile extends React.Component {
           padding: 10px 20px;
           border-radius: 30px;
           margin: auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
     
         .button-edit {
@@ -126,7 +132,7 @@ class Profile extends React.Component {
         }
 
         .button-edit:active {
-          transform: scale(.95);
+          background: var(--button-active-background);
         }
 
         .button-signOut {
@@ -134,7 +140,7 @@ class Profile extends React.Component {
           margin: 0 8px 0;
           padding: 10px;
           color: #fff;
-          background: #ed1c1c;
+          background: var(--cancel-button-background);
           border-radius: 5px;
           outline: none;
           user-select: none;
@@ -143,11 +149,11 @@ class Profile extends React.Component {
         }
 
         .button-signOut:hover {
-          background: #cc1818;
+          background: var(--cancel-hover-background);
         }
 
         .button-signOut:active {
-          transform: scale(.95);
+          background: var(--cancel-active-background);
         }
 
         @media (max-width: 700px) {
@@ -169,8 +175,14 @@ class Profile extends React.Component {
           }
 
           #email {
-            max-width: 80%;
+            max-width: 70%;
             margin: auto;
+          }
+
+          .buttons {
+            left: calc(50% - 161px);
+            position: absolute;
+            bottom: 20px;
           }
         }
       `}</style>

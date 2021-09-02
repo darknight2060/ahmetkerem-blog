@@ -3,7 +3,16 @@
 :root {
   --button-inactive: #000;
   --button-background: rgb(0 211 128);
-  --button-hover-background: rgb(0 155 94);
+  --button-hover-background: #03bc73;
+  --button-active-background: rgb(0 155 94);
+  --cancel-button-background: #ed1c1c;
+  --cancel-hover-background: #d61515;
+  --cancel-active-background: #a71313;
+}
+
+@font-face {
+  font-family: customFont;
+  src: url(../open-sans.extrabold-italic.ttf);
 }
 
 body {
@@ -53,10 +62,6 @@ button:hover {
   cursor: pointer;
 }
 
-button:active {
-  transform: scale(.95);
-}
-
 .overlay-img {
-  animation: loadingAnimation2 ease-in-out 1.5s infinite;
+  animation: loadingAnimation ease-in-out 1.5s infinite;
 }

@@ -1,5 +1,5 @@
 # Varolan Özellikler
-- Admin Paneli (İstatistikler, Kullanıcı Etkinlikleri, Post Düzenleme, Oluşturma, Silme)
+- Admin Paneli (İstatistikler, Kullanıcı Etkinlikleri, Yazı Düzenleme/Oluşturma/Silme)
 - Giriş Yapma, Profil düzenleme
 - Blog Yazılarını beğenme, paylaşma ve yorum yapma
 - Blog Yazıları arama
@@ -13,3 +13,4 @@
 - [React-Loading-Skeleton](https://tr.reactjs.org)
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [React-Share](https://www.npmjs.com/package/react-share)
+- [React-Social-Icons](https://www.npmjs.com/package/react-social-icons)

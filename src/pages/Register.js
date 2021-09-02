@@ -19,16 +19,18 @@ class SignUp extends React.Component {
   }
 
   async SignUp() {
+    const nameValue = document.getElementById("name").value;
     const emailValue = document.getElementById("email").value;
     const passValue = document.getElementById("pass").value;
 
+    if (nameValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir kullanıcı adı girin.";
     if (emailValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir E-Posta girin.";
-    if (passValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir şifre belirleyin.";
+    if (passValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir şifre girin.";
 
     document.getElementById("overlay").style.display = "block";
     document.getElementById("overlay-img").style.display = "block";
 
-    await auth.createUserWithEmailAndPassword(emailValue, passValue).then().catch((error) => {
+    await auth.createUserWithEmailAndPassword(emailValue, passValue).then().catch(() => {
       document.getElementById("overlay").style.display = "none";
       document.getElementById("overlay-img").style.display = "none";
     });
@@ -59,11 +61,11 @@ class SignUp extends React.Component {
           <p style={{fontWeight: "bold", userSelect: "none"}}>Kaydol</p>
           <div id="errorMessage" className="errorMessage"></div>
 
-          <input id="name" type="text" placeholder="Kullanıcı Adı" autocomplete="off" required/>
+          <input id="name" type="text" placeholder="Kullanıcı Adı" autocomplete="off" />
 
-          <input id="email" type="email" placeholder="E-Posta" required/>
+          <input id="email" type="email" placeholder="E-Posta" />
 
-          <input id="pass" type="password" placeholder="Şifre" required/>
+          <input id="pass" type="password" placeholder="Şifre" />
           
           <button className="registerButton" onClick={this.SignUp}>Kaydol</button><br/><br/>
           <label className="text">Zaten bir hesabın var mı? <a href="/giris">Giriş Yap.</a></label>
@@ -105,7 +107,7 @@ class SignUp extends React.Component {
           }
   
           .errorMessage {
-            color: #000;
+            color: var(--cancel-button-background);
             font-size: 16px;
             font-weight: bold;
             margin-top: -30px;
@@ -128,8 +130,8 @@ class SignUp extends React.Component {
           }
   
           input:focus {
-            background: rgb(255 255 255);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255);
+            box-shadow: inset 0 0 0 2px var(--button-background);
           }
   
           button {
@@ -148,6 +150,10 @@ class SignUp extends React.Component {
           button:hover {
             background: var(--button-hover-background);
           }
+
+          button:active {
+            background: var(--button-active-background);
+          }
   
           .text {
             color: #000;
@@ -165,6 +171,10 @@ class SignUp extends React.Component {
           
           .text a:hover {
             color: var(--button-hover-background);
+          }
+
+          .text a:active {
+            color: var(--button-active-background);
           }
   
           @media (max-width: 623px) {

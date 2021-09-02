@@ -3,6 +3,7 @@ import { database } from '../services/firebase';
 import Fuse from 'fuse.js';
 import ms from '../services/ms';
 import Nav from './../components/Nav';
+import Footer from './../components/Footer';
 import '../css/App.css';
 import '../css/Home.css';
 
@@ -90,13 +91,24 @@ class Search extends Component {
 
           <div className="main2">
             <div className="searchContainer">
+              <h1 className="searchTitle" style={{margin: "0", marginRight: "auto"}}>Yazılarda Ara</h1>
+
               <input type="search" id="searchInput" placeholder="Yazılarda Ara"></input>
               <button onClick={this.search} className="searchIt" id="searchIt" >
-                <img src="/images/search.png" />
+                <img
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    padding: "0",
+                    background: "none"
+                  }}
+                  
+                  src="/images/search.png"
+                />
               </button>
             </div>
 
-            <h1 style={this.searched == true ? {} : {display: "none"}}>
+            <h1 style={this.searched == true ? {opacity: ".7"} : {display: "none"}}>
               "{this.searchText}" sorgusu için arama sonuçları:
             </h1>
 
@@ -112,7 +124,9 @@ class Search extends Component {
               {this.state.posts.length > 0 ? this.state.posts.map(post => {return (
                 <a href={"/post/" + (this.searched == true ? post.item.id : post.id)}>
                   <div className="post">
-                    <img className="image" src={this.searched == true ? post.item.image : post.image}/>
+                    <div className="image-div">
+                      <img className="image" src={this.searched == true ? post.item.image : post.image}/>
+                    </div>
                     
                     <div style={{padding: "0 16px"}}>
                       <h2 className="title">{this.searched == true ? post.item.title : post.title}</h2>
@@ -138,16 +152,37 @@ class Search extends Component {
             </div>
 
           </div>
-
-          <style>{`
-            @media (max-width: 700px) {
-              nav {
-                width: max-content;
-              }
-            }
-          `}</style>
-          
         </div>
+
+        <div style={this.state.posts.length > 0 ? {} : {display: "none"}}>
+          <Footer />
+        </div>
+
+        <style>{`
+          html {
+            background: #fff;
+          }
+          
+          .main {
+            background: #eeeeef;
+            padding-top: 100px;
+          }
+  
+          footer {
+            margin: 0;
+          }
+  
+          @media (max-width: 700px) {
+            nav {
+              width: max-content;
+            }
+  
+            .main {
+              padding: 0;
+              padding-bottom: 10px;
+            }
+          }
+        `}</style>
       </div>
     )
   }

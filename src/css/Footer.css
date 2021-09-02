@@ -20,6 +20,22 @@ footer a:hover {
   color: var(--button-hover-background)
 }
 
+footer .social-links {
+  padding-top: 20px;
+}
+
+footer a.social-icon {
+  margin-right: 10px;
+}
+
+footer a.social-icon:hover {
+  filter: brightness(0.8);
+}
+
+footer a.social-icon:active {
+  filter: brightness(0.6);
+}
+
 @media (max-width: 900px) {
   footer {
     margin-top: 100px;

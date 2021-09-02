@@ -61,7 +61,7 @@ class PostForm extends Component {
       <h4 className="title">Yazıyı Düzenle</h4>
 
       <label className="image2" htmlFor="imeyç" style={{cursor: "pointer"}}>
-        <img src={this.state.fileLink || "/images/example.jpg"} id="post_photo" />
+        <img src={this.state.fileLink || "/images/default-user.png"} id="post_photo" />
         <div className="upload">Yazı Resmi Yükle</div>
       </label>
 
@@ -69,6 +69,7 @@ class PostForm extends Component {
         placeholder="Yazı Başlığı"
         className="baslik" 
         maxLength="24" 
+        spellCheck="false"
         value={this.state.postTitle} 
         onChange={event => this.setState({ postTitle: event.target.value })}
       />
@@ -77,6 +78,7 @@ class PostForm extends Component {
         placeholder="Yazı İçeriği" 
         id="area"
         className="icerik" 
+        spellCheck="false"
         value={this.state.postContent} 
         onChange={event => this.setState({ postContent: event.target.value })} 
       />

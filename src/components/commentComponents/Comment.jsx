@@ -62,14 +62,14 @@ class Comment extends Component {
   }
 
   updateImage(id) {
-    if (id == "Misafir") return "/images/example.jpg";
+    if (id == "Misafir") return "/images/default-user.png";
 
     var data = "";
     this.state.users.forEach(p => {
       if (p.id !== id) return;
       else {
         database.ref(`users/${id}`).on('value', (snapshot) => {
-          data = snapshot.val().userImage || "/images/example.jpg";
+          data = snapshot.val().userImage || "/images/default-user.png";
         });
       }
     })

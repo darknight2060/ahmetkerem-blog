@@ -73,7 +73,7 @@ class NewPostDialog extends Component {
 
       <div className="newPost" id="newPost">
         <label className="image2" htmlFor="imeyç" style={{cursor: "pointer"}}>
-          <img src={this.state.fileLink || "/images/example.jpg"} id="draft_photo" />
+          <img src={this.state.fileLink || "/images/default.jpg"} id="draft_photo" />
           <div className="upload">Yazı Resmi Yükle</div>
         </label>
 
@@ -192,11 +192,12 @@ class NewPostDialog extends Component {
           font-size: 15px;
           display: block;
           margin: auto;
-          width: 100%;
+          width: calc(100% - 10px);
           height: 225px;
           object-fit: cover;
+          border: 4px solid var(--button-background);
           border-radius: 10px 10px 0 0;
-          transition: 0.1s;
+          transition: .1s;
         }
         
         .newPost .image2 .upload {
@@ -207,9 +208,9 @@ class NewPostDialog extends Component {
 
         .newPost input {
           width: 90%;
-          max-width: 400px;
+          max-width: 380px;
           margin-top: 5px;
-          padding: 15px 0;
+          padding: 15px 10px;
           border: 0;
           border-radius: 10px;
           outline: none;
@@ -223,13 +224,13 @@ class NewPostDialog extends Component {
         }
         
         .newPost input:focus {
-          background: rgb(0 0 0 / 10%);
-          transform: scale(1.005);
+          background: rgba(0, 0, 0, .04);
+          box-shadow: inset 0 0 0 2px var(--button-background);
         }
         
         .newPost textarea {
           width: 90%;
-          max-width: 400px;
+          max-width: 380px;
           height: 155px;
           border: 0;
           padding: 15px 10px;
@@ -244,8 +245,8 @@ class NewPostDialog extends Component {
         }
         
         .newPost textarea:focus {
-          background: rgb(0 0 0 / 10%);
-          transform: scale(1.005);
+          background: rgba(0, 0, 0, .04);
+          box-shadow: inset 0 0 0 2px var(--button-background);
         }
 
         .newPost button {
@@ -270,6 +271,10 @@ class NewPostDialog extends Component {
           background: var(--button-hover-background);
         }
 
+        .yeah:active {
+          background: var(--button-active-background);
+        }
+
         .nope {
           width: 125px;
           margin: 0 8px 0;
@@ -288,6 +293,11 @@ class NewPostDialog extends Component {
           border-color: var(--button-hover-background);
         }
 
+        .nope:active {
+          color: var(--button-active-background);
+          border-color: var(--button-active-background);
+        }
+
         @media (max-width: 700px) {
           .newPost {
             width: 100%;
@@ -296,6 +306,7 @@ class NewPostDialog extends Component {
             left: 0;
             padding: 0px;
             margin: 0;
+            border-radius: 0;
           }
 
           .newPost .image2 img {

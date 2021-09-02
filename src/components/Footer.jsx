@@ -1,4 +1,5 @@
 import React from 'react';
+import { SocialIcon } from 'react-social-icons';
 import '../css/Footer.css';
 
 class Footer extends React.Component {
@@ -10,6 +11,22 @@ class Footer extends React.Component {
       
         <a href="/hakkinda">Ahmet Kerem</a> tarafından ❤️ ile geliştirildi.
 
+        <div className="social-links">
+          <SocialIcon
+            url="https://www.facebook.com/ahmetkerem.akyel.3/"
+            style={{width: "35px", height: "35px"}}
+          />
+
+          <SocialIcon
+            url="https://www.instagram.com/ahmetkeremakyel/"
+            style={{width: "35px", height: "35px"}}
+          />
+
+          <SocialIcon
+            url="https://twitter.com/ahmetkeremakyel"
+            style={{width: "35px", height: "35px"}}
+          />
+        </div>
       </div>
     </footer>
   )}

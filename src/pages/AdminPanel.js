@@ -124,23 +124,23 @@ class AdminPanel extends React.Component {
         style={this.state.panelState == 3 ? {height: "100%", marginBottom: "40px"} : {}}>
           
         {this.state.logined == true ?
-          <div style={{borderBottom: "2px solid var(--button-background)"}}>
+          <div style={{display: "flex", justifyContent: "center", boxShadow: "inset 0px -4px #eeeeef"}}>
             <button 
               onClick={e => this.setState({ panelState: 0 })}
               className="tab-button"
-              style={this.state.panelState == 0 ? {background: "var(--button-background)"} : {}}
+              style={this.state.panelState == 0 ? {borderBottom: "4px solid var(--button-background)"} : {}}
             >  İstatistikler  </button>
     
             <button
               onClick={e => this.setState({ panelState: 1 })}
               className="tab-button"
-              style={this.state.panelState == 1 ? {background: "var(--button-background)"} : {}}
-            > Bildirimler </button>
+              style={this.state.panelState == 1 ? {borderBottom: "4px solid var(--button-background)"} : {}}
+            > Hareketler </button>
     
             <button
               onClick={e => this.setState({ panelState: 2 })}
               className="tab-button"
-              style={this.state.panelState == 2 ? {background: "var(--button-background)"} : {}}
+              style={this.state.panelState == 2 ? {borderBottom: "4px solid var(--button-background)"} : {}}
             > Yazılar </button>
           </div>
         :
@@ -227,8 +227,8 @@ class AdminPanel extends React.Component {
         }
 
         .panel-input:focus {
-          background: rgb(0 0 0 / 10%);
-          transform: scale(1.05);
+          background: rgba(0, 0, 0, .04);
+          box-shadow: inset 0 0 0 2px var(--button-background);
         }
 
         .panel-button {
@@ -254,24 +254,33 @@ class AdminPanel extends React.Component {
         }
 
         .tab-button {
-          margin: 10px 5px;
-          padding: 8px 12px;
-          font-weight: bold;
-          color: #fff;
-          background: var(--button-hover-background);
+          color: #000;
+          background: none;
+          padding: 18px 17px;
+          text-transform: uppercase;
           border: 0;
-          border-radius: 5px;
+          border-bottom: 4px solid transparent;
           outline: none;
-          transition: .1s;
+          transition: .2s;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .tab-button:hover {
-          background: var(--button-background);
+          border-bottom: 4px solid var(--button-hover-background);
+        }
+
+        .tab-button:active {
+          transform: scale(1);
         }
 
         @media (max-width: 700px) {
           html {
             background: #fff;
+          }
+
+          nav {
+            box-shadow: none;
           }
 
           .panel-card {
@@ -284,7 +293,7 @@ class AdminPanel extends React.Component {
           }
 
           .panel-input {
-            width: 80%;
+            width: 70%;
           }
         }
       `}</style>

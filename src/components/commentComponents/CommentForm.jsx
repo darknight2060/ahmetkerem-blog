@@ -24,7 +24,7 @@ class CommentForm extends Component {
   }
 
   shareComment() {
-    if (this.state.newCommentContent == "") return;
+    if (this.state.newCommentContent.length < 1) return;
     else {
       var date = new Date;
 
@@ -46,7 +46,14 @@ class CommentForm extends Component {
     });
   }
 
-  render() {return (
+  render() {
+    
+    if (document.getElementById("shareButton")) {
+      if (this.state.newCommentContent.length < 1) document.getElementById("shareButton").disabled = true;
+      else document.getElementById("shareButton").disabled = false;
+    }  
+
+  return (
     <div className="div">
       <h4 className="comments-title" style={{userSelect: "none"}}>Yorumlar</h4>
 
@@ -55,7 +62,7 @@ class CommentForm extends Component {
 
           (this.state.user.userName ? 
             <img
-              src={this.state.user.userImage || "/images/example.jpg"}
+              src={this.state.user.userImage || "/images/default-user.png"}
               className="comment-image"
               id="commentform-image"
             />
@@ -70,7 +77,7 @@ class CommentForm extends Component {
 
         :
           <img
-            src="/images/example.jpg"
+            src="/images/default-user.png"
             className="comment-image"
             id="commentform-image"
           />
@@ -100,8 +107,13 @@ class CommentForm extends Component {
                   onChange={event => this.setState({newCommentContent: event.target.value})}
                 />
       
-                <button className="shareButton" onClick={this.shareComment}>
-                  Yayınla
+                <button
+                  className="shareButton"
+                  onClick={this.shareComment}
+                  id="shareButton"
+                  disabled
+                >
+                  Paylaş
                 </button>
               </React.Fragment>
             :
@@ -115,8 +127,13 @@ class CommentForm extends Component {
                 onChange={event => this.setState({newCommentContent: event.target.value})}
               />
     
-              <button className="shareButton" onClick={this.shareComment}>
-                Yayınla
+              <button
+                className="shareButton"
+                onClick={this.shareComment}
+                id="shareButton"
+                disabled
+              >
+                Paylaş
               </button>
             </React.Fragment>
           }
@@ -171,6 +188,12 @@ class CommentForm extends Component {
           text-align: left;
           font-size: 14px;
           display: block;
+          transition: .1s;
+        }
+
+        .commentInput:focus {
+          background: rgba(0, 0, 0, .04);
+          box-shadow: inset 0 0 0 2px var(--button-background);
         }
         
         .shareButton {
@@ -188,6 +211,12 @@ class CommentForm extends Component {
 
         .shareButton:hover {
           background: var(--button-hover-background);
+        }
+
+        .shareButton:disabled {
+          color: #bbb;
+          background-color: #eeeeef;
+          cursor: no-drop;
         }
 
         @media (max-width: 623px) {

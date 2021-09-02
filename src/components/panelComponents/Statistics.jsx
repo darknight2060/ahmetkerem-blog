@@ -34,6 +34,7 @@ class Statistics extends Component {
           width: 64px;
           height: 64px;
           object-fit: contain;
+          transition: .1s;
         }
       
         .panel-mid b {

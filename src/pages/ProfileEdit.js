@@ -79,7 +79,7 @@ class ProfileEdit extends Component {
             <React.Fragment>
               <img
                 id="photo"
-                src={this.state.user.userImage || "/images/example.jpg"}
+                src={this.state.user.userImage || "/images/default-user.png"}
                 alt="Profil Görseli"
                 className='card-image'
               />
@@ -109,6 +109,7 @@ class ProfileEdit extends Component {
             className="name profile-edit-input"
             maxLength="20"
             autocomplete="off"
+            spellCheck="false"
             onChange={event => this.setState({name: event.target.value})}
             disabled
           />
@@ -119,6 +120,7 @@ class ProfileEdit extends Component {
             placeholder="E-Posta"
             className="profile-edit-input"
             autocomplete="off"
+            spellCheck="false"
             onChange={event => this.setState({email: event.target.value})}
             disabled
           />
@@ -139,6 +141,10 @@ class ProfileEdit extends Component {
         </div>
 
         <style>{`
+          nav {
+            box-shadow: none;
+          }
+
           .overlay {
             top: 0;
             left: 0;
@@ -210,7 +216,7 @@ class ProfileEdit extends Component {
             border: 0;
             margin: 15px auto 0;
             padding: 12px;
-            border-radius: 5px;
+            border-radius: 10px;
             background: rgba(0, 0, 0, .06);
             resize: none;
             outline: none;
@@ -221,8 +227,8 @@ class ProfileEdit extends Component {
           }
 
           .profile-edit-input:focus {
-            background: rgb(0 0 0 / 10%);
-            transform: scale(1.05);
+            background: rgba(0, 0, 0, .04);
+            box-shadow: inset 0 0 0 2px var(--button-background);
           }
 
           label {
@@ -295,7 +301,8 @@ class ProfileEdit extends Component {
             }
 
             .button-save {
-              left: 5%;
+              left: calc(50% - 85px);
+              bottom: 20px;
               position: absolute;
             }
           }

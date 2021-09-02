@@ -9,6 +9,9 @@ const Login = () => {
     const emailValue = document.getElementById("email").value;
     const passValue = document.getElementById("pass").value;
 
+    if (emailValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir E-Posta girin.";
+    if (passValue == "") return document.getElementById("errorMessage").innerText = "Lütfen bir şifre girin.";
+
     document.getElementById("overlay").style.display = "block";
     document.getElementById("overlay-img").style.display = "block";
 
@@ -40,12 +43,12 @@ const Login = () => {
         <p style={{fontWeight: "bold", userSelect: "none"}}>Giriş Yap</p>
         <div id="errorMessage" className="errorMessage"></div>
   
-        <input id="email" type="email" placeholder="E-Posta" required/>
+        <input id="email" type="email" placeholder="E-Posta" />
 
-        <input id="pass" type="password" placeholder="Şifre" required/>
+        <input id="pass" type="password" placeholder="Şifre" />
         
         <button onClick={SignIn} id="signButton">Giriş Yap</button><br/><br/>
-        <label className="text">Henüz bir hesabın yok mu? Sorun değil! <a href="/kaydol">Kaydol.</a></label>
+        <label className="text">Henüz bir hesabın yok mu? <a href="/kaydol">Kaydol.</a></label>
   
         <style>{`
           .ana {
@@ -83,7 +86,7 @@ const Login = () => {
           }
     
           .errorMessage {
-            color: #000;
+            color: var(--cancel-button-background);
             font-size: 16px;
             font-weight: bold;
             margin-top: -30px;
@@ -106,8 +109,8 @@ const Login = () => {
           }
     
           input:focus {
-            background: rgb(255 255 255);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255);
+            box-shadow: inset 0 0 0 2px var(--button-background);
           }
     
           button {
@@ -126,6 +129,10 @@ const Login = () => {
           button:hover {
             background: var(--button-hover-background);
           }
+
+          button:active {
+            background: var(--button-active-background);
+          }
     
           .text {
             color: #000;
@@ -143,6 +150,10 @@ const Login = () => {
           
           .text a:hover {
             color: var(--button-hover-background);
+          }
+
+          .text a:active {
+            color: var(--button-active-background);
           }
     
           @media (max-width: 623px) {

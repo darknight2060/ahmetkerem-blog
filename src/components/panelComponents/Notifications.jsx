@@ -36,13 +36,12 @@ class Notifications extends Component {
           width: 100%;
           height: 68vh;
           background: #fff;
-          border-radius: 0 0 10px 10px;
           float: right;
           overflow: hidden;
         }
       
         .panel-notfs-overlay {
-          height: calc(100% - 65px);
+          height: 100%;
           overflow: hidden auto;
         }
         
@@ -97,6 +96,10 @@ class Notifications extends Component {
 
           .panel-notfs-overlay {
             height: 100%;
+          }
+
+          .panel-notf:hover {
+            background: initial;
           }
         }
       `}</style>  
