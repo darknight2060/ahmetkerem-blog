@@ -1,17 +1,17 @@
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import Home from './pages/Home';
-import PostID from './pages/postID';
-import Search from './pages/Search';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Profile from './pages/Profil';
-import ProfileEdit from './pages/ProfileEdit';
-import AdminPanel from './pages/AdminPanel';
-import NotFoundPage from './pages/404';
-import './css/App.css';
+import Home from './pages/Home/Home';
+import PostID from './pages/PostID/PostID';
+import Search from './pages/Search/Search';
+import About from './pages/About/About';
+import Contact from './pages/Contact/Contact';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Profile from './pages/Profile/Profile';
+import ProfileEdit from './pages/ProfileEdit/ProfileEdit';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
+import NotFoundPage from './pages/404/404';
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {

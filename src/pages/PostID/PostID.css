@@ -1,0 +1,113 @@
+.PostID {
+  padding: 100px 0 0;
+  background: #eeeeef;
+}
+
+.PostID .main {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.PostID .card {
+  color: #000;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 10px 16px rgb(0 0 0 / 6%);
+  width: 100%;
+  text-align: center;
+}
+
+.PostID .card-image-skeleton {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px 10px 0 0;
+  display: block;
+}
+
+.PostID .card-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.PostID .card-title-skeleton {
+  width: 550px;
+  height: 66px;
+  border-radius: 100px;
+  margin: 30px 0;
+}
+
+.PostID .card-title {
+  margin: 30px auto 35px;
+  padding: 0 30px;
+  font-size: 48px;
+  font-weight: normal;
+}
+
+.PostID .card-content {
+  padding: 0 30px;
+  text-align: left;
+}
+
+.PostID .card-date {
+  padding: 10px 30px 30px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.PostID .card .viewContainer {
+  padding: 0 10px 0 30px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.PostID .card .viewCount {
+  color: #000;
+  margin-right: 5px;
+}
+
+.PostID .card .viewImage {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .PostID {
+    padding: 0;
+  }
+
+  .PostID .main {
+    width: 100%;
+  }
+
+  .PostID .card {
+    margin: 0 auto;
+    padding-top: 60px;
+    border-radius: 0;
+  }
+
+  .PostID .card-image-skeleton {
+    height: 250px;
+    border-radius: 0;
+  }
+
+  .PostID .card-image {
+    height: 250px;
+    border-radius: 0;
+  }
+
+  .PostID .card-title-skeleton {
+    width: calc(100% - 60px);
+  }
+
+  .PostID footer {
+    margin: 0;
+  }
+}

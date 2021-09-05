@@ -1,0 +1,19 @@
+.shareContainer {
+  margin: 0 15px;
+  display: flex;
+  overflow: auto hidden;
+}
+
+.shareContainer button {
+  height: 32px;
+  margin-right: 6px;
+}
+
+.shareContainer button:hover svg {
+  filter: opacity(0.8);
+}
+
+.shareContainer svg {
+  border-radius: 5px;
+  transition: .1s;
+}

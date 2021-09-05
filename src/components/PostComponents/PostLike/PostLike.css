@@ -1,0 +1,65 @@
+.likeContainer {
+  width: auto;
+  height: auto;
+  text-align: left;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.likeImageContainer {
+  display: flex;
+}
+
+.likeImageContainer:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.likeImage {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.likeCount {
+  color: #000;
+  margin-right: 5px;
+  position: relative;
+  user-select: none;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--button-background);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 30px;
+  margin-left: -55px;
+  white-space: nowrap;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--button-background) transparent transparent transparent;
+}

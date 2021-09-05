@@ -1,0 +1,71 @@
+:root {
+  --button-inactive: #000;
+  --button-background: rgb(0 211 128);
+  --button-hover-background: #03bc73;
+  --button-active-background: rgb(0 155 94);
+  --cancel-button-background: #ed1c1c;
+  --cancel-hover-background: #d61515;
+  --cancel-active-background: #a71313;
+}
+
+@font-face {
+  font-family: customFont0;
+  src: url(./fonts/Nunito-Regular.ttf);
+}
+
+@font-face {
+  font-family: customFont;
+  src: url(./fonts/open-sans.extrabold-italic.ttf);
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Nunito', sans-serif;
+  font-family: customFont0;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+textarea {
+  font-family: customFont0;
+}
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+  cursor: default;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #2f2d33;
+  border-radius: 10px;
+}
+
+input {
+  font-family: customFont0;
+}
+
+button {
+  user-select: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.overlay-img {
+  animation: loadingAnimation ease-in-out 1.5s infinite;
+}

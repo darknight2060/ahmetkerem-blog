@@ -1,0 +1,103 @@
+.AdminPanel .panel-card {
+  color: #000;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 10px 16px rgb(0 0 0 / 6%);
+  width: 100%;
+  max-width: 1000px;
+  height: 650px;
+  margin: 120px auto 0;
+  text-align: center;
+}
+
+.AdminPanel .panel-card-h1 {
+  margin: 0 auto 25px;
+  font-weight: normal;
+  user-select: none;
+}
+
+.AdminPanel .panel-input {
+  width: 300px;
+  border: 0;
+  margin: 0 auto 20px;
+  padding: 12px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .06);
+  resize: none;
+  outline: none;
+  font-size: 16px;
+  transition: .1s;
+  display: block;
+}
+
+.AdminPanel .panel-input:focus {
+  background: rgba(0, 0, 0, .04);
+  box-shadow: inset 0 0 0 2px var(--button-background);
+}
+
+.AdminPanel .panel-button {
+  width: 120px;
+  background: var(--button-background);
+  border: none;
+  border-radius: 5px;
+  margin: 20px auto 0;
+  padding: 10px;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: .1s;
+}
+
+.AdminPanel .panel-button:hover {
+  background: var(--button-hover-background);
+  cursor: pointer;
+}
+
+.AdminPanel .panel-button:active {
+  transform: scale(.95);
+}
+
+.AdminPanel .tab-button {
+  color: #000;
+  background: none;
+  padding: 18px 17px;
+  text-transform: uppercase;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  outline: none;
+  transition: .2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.AdminPanel .tab-button:hover {
+  border-bottom: 4px solid var(--button-hover-background);
+}
+
+.AdminPanel .tab-button:active {
+  transform: scale(1);
+}
+
+@media (max-width: 700px) {
+  .AdminPanel html {
+    background: #fff;
+  }
+
+  .AdminPanel nav {
+    box-shadow: none;
+  }
+
+  .AdminPanel .panel-card {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding-top: 65px;
+    box-shadow: 0 0;
+    display: block;
+    text-align: center;
+  }
+  
+  .AdminPanel .panel-input {
+    width: 70%;
+  }
+}

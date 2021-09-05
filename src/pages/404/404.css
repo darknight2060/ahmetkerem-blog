@@ -1,0 +1,58 @@
+.x404-div {
+  max-width: 700px;
+  top: 50%;
+  left: 50%;
+  margin: 200px auto;
+  position: inherit;
+  text-align: center;
+}
+
+.x404-div .title {
+  font-size: 47px;
+  margin: 20px;
+}
+
+.back-div {
+  font-size: 20px;
+}
+
+.back-link {
+  color: var(--button-background);
+  font-size: 20px;
+  transition: .1s;
+}
+
+.back-link:hover {
+  color: var(--button-hover-background);
+}
+
+.NotFoundPage footer {
+  width: 100%;
+  bottom: -100px;
+  padding: 80px 0;
+  position: absolute;
+}
+
+@media (max-width: 700px) {
+  .x404-div {
+    margin: 0;
+    padding: 150px 20px 0;
+  }
+
+  .x404-div .title {
+    font-size: 30px;
+  }
+  
+  .back-div {
+    font-size: 14px;
+  }
+
+  .back-link {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .NotFoundPage footer {
+    margin: 0;
+  }
+}
