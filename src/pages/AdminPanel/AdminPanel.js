@@ -149,7 +149,7 @@ class AdminPanel extends React.Component {
         }
 
         {this.state.logined == false ?
-          <div style={{paddingTop: "20vh"}}>
+          <div className="panel-login">
             <h1 className="panel-card-h1">Panel'e Giriş Yap</h1>
   
             <form id="panel-form">

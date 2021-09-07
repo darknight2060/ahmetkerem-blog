@@ -164,7 +164,10 @@ class Home extends Component {
                         </div>
                       </div>
 
-                      <div className="date">{ms(Date.now() - post.date, {long: true}) + " önce"}</div>
+                      <div className="date">
+                        <img src="/images/time.png" className="likeImage" style={{marginRight: "2px"}} />
+                        {ms(Date.now() - post.date, {long: true}) + " önce"}
+                      </div>
                     </div>
                   </div>
                 </div>

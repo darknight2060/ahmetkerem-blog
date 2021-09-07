@@ -61,7 +61,7 @@ class PostForm extends Component {
       <h4 className="title">Yazıyı Düzenle</h4>
 
       <label className="image2" htmlFor="imeyç" style={{cursor: "pointer"}}>
-        <img src={this.state.fileLink || "/images/default-user.png"} id="post_photo" />
+        <img src={this.state.fileLink || "/images/default.jpg"} id="post_photo" />
         <div className="upload">Yazı Resmi Yükle</div>
       </label>
 

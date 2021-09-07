@@ -135,6 +135,9 @@
   margin: 0px 0 0 auto;
   text-align: right;
   line-height: 22px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .Home .post .likes, .views {

@@ -2,7 +2,7 @@
 - Admin Paneli (İstatistikler, Kullanıcı Etkinlikleri, Yazı Düzenleme/Oluşturma/Silme)
 - Giriş Yapma, Profil düzenleme
 - Blog Yazılarını beğenme, paylaşma ve yorum yapma
-- Blog Yazıları arama
+- Blog Yazıları içinde arama yapma
 
 # Kullanılan Teknolojiler
 - [Emailjs-com](https://www.emailjs.com)
@@ -14,3 +14,7 @@
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [React-Share](https://www.npmjs.com/package/react-share)
 - [React-Social-Icons](https://www.npmjs.com/package/react-social-icons)
+
+### Fontlar
+- Nunito-Regular
+- OpenSans-BoldItalic

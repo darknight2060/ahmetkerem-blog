@@ -83,7 +83,7 @@ class CommentForm extends Component {
           />
         }
 
-        <div style={{width: "90%"}}>          
+        <div style={{width: "calc(100% - 60px)"}}>          
           <div className="commentform-name" id="commentform-name">
             {localStorage.getItem("currentUser") ?
 

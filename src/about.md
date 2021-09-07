@@ -10,10 +10,10 @@ Kendimi geliştirmek için çok çalışıyorum :D
 # Site Hakkında
 
 ### Varolan Özellikler
-- Admin Paneli (İstatistikler, Kullanıcı Etkinlikleri, Post Düzenleme, Oluşturma, Silme)
+- Admin Paneli (İstatistikler, Kullanıcı Etkinlikleri, Yazı Düzenleme/Oluşturma/Silme)
 - Giriş Yapma, Profil düzenleme
 - Blog Yazılarını beğenme, paylaşma ve yorum yapma
-- Blog Yazıları arama
+- Blog Yazıları içinde arama yapma
 
 ### Kullanılan Teknolojiler
 - [Emailjs-com](https://www.emailjs.com)
@@ -25,6 +25,10 @@ Kendimi geliştirmek için çok çalışıyorum :D
 - [React-Markdown](https://www.npmjs.com/package/react-markdown)
 - [React-Share](https://www.npmjs.com/package/react-share)
 - [React-Social-Icons](https://www.npmjs.com/package/react-social-icons)
+
+### Fontlar
+- Nunito-Regular
+- OpenSans-BoldItalic
 
 ### Kaynak Kodu
 Bu bir açık kaynak proje, projenin kaynak koduna [buradan](https://github.com/Akerem17/ahmetkerem-blog) ulaşabilirsin!
